@@ -47,10 +47,8 @@
     'quote': {pattern: /[\{\}]/gm, regex: /\{{1,}([\s\S]*?)\}{1,}/gm}
   };
   var list = {
-    'header1': {pattern: /\#/gm, regex: /^\#{1}(?!\#)(.*?)$/gm},
-    'header2': {pattern: /\#/gm, regex: /^\#{2}(?!\#)(.*?)$/gm},
-    'header3': {pattern: /\#/gm, regex: /^\#{3}(?!\#)(.*?)$/gm},
-    'header4': {pattern: /\#/gm, regex: /^\#{4,}(.*?)$/gm}
+    'unordered': {pattern: /\-/gm, regex: /((.*?)\-(?!\-).+$\n){1,}/gm},
+    'ordered': {pattern: /\d{1,}\./gm, regex: /((.*?)\d{1,}\..+$\n){1,}/gm}
   };
   var link = {
     'header1': {pattern: /\#/gm, regex: /^\#{1}(?!\#)(.*?)$/gm},
@@ -133,6 +131,15 @@
   =============================List=============================
   ============================================================*/
   exports.List = function(doc) {
+    for (key in style) {
+      doc = doc.replace(style[key].regex, function(match) {
+        var tag = key == 'unordered' ? 'ul' : 'ol';
+        return '<' + tag + ' class="' + prefix + key + '"' + match.replace(/.+/gm, function(line) {
+          var temp = exports.Prepare(line).replace(style[key].pattern, '');
+          return '<li>' + exports.Trim(temp) + '</li>';
+        }) + '</' + tag + '>';
+      });
+    }
     return doc;
   };
   
