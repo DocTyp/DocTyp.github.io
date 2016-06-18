@@ -169,8 +169,7 @@ var DocTyp = (function(exports) {
         scheme = 'light';
       }
       //Cater for older browsers
-      //var doc = element.innerText ? element.innerText : element.textContent;
-      var doc = element.innerHTML;
+      var doc = element.innerText ? element.innerText : element.textContent;
       //Processing
       doc = Header(doc);
       doc = Style(doc);
