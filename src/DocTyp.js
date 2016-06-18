@@ -165,6 +165,8 @@ var DocTyp = (function(exports) {
       if (theme !== undefined) {
         scheme = theme.toLowerCase();
         LoadStyle('Style/' + theme.toLowerCase() + '.css');
+      } else {
+        scheme = 'light';
       }
       //Cater for older browsers
       var doc = element.innerText ? element.innerText : element.textContent;
