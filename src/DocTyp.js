@@ -58,7 +58,7 @@ var DocTyp = (function(exports) {
   ============================================================*/
   exports.Docify = function(element, theme) {
     //Load Extra Files
-    exports.LoadScript('https://doctyp.github.io/src/extension.js');
+    exports.LoadScript('extension.js');
     //Check if element is an element
     if (element.nodeType && element.nodeType == 1) {
       //Adding class to element
