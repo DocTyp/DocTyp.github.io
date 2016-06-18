@@ -6,6 +6,15 @@
   /*============================================================
   ============================Private===========================
   ============================================================*/
+  function Output(doc) {
+    for (var pattern in patterns) {
+      doc = doc.replace(pattern.regex, function(match) {
+        match = match.replace(pattern.remove, '');
+        return '<span class="doctype-' + pattern.type + '">' + match + '</span>';
+      });
+    }
+    return doc;
+  }
   
   /*============================================================
   ============================Public============================
