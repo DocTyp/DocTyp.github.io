@@ -4,5 +4,5 @@ c:[{cN:"comment",b:/\(\*/,e:/\*\)/},e.ASM,e.QSM,e.CNM,{b:/\{/,e:/\}/,i:/:/}]}});
 
 //Call
 (function() {
-  hljs.initHighlightingOnLoad();
+  hljs.initHighlighting();
 })();
