@@ -66,7 +66,7 @@ var DocTyp = (function(exports) {
       //Check if user is using their own style
       if (theme !== undefined) {
         exports.theme = theme.toLowerCase();
-        LoadStyle('Style/' + theme.toLowerCase() + '.css');
+        exports.LoadStyle('Style/' + theme.toLowerCase() + '.css');
       } else {
         exports.theme = 'light';
       }
