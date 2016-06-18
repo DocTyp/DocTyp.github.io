@@ -69,6 +69,10 @@ var DocTyp = (function(exports) {
   exports.Docify = function(element, style) {
     //Check if element is an element
     if (element.nodeType && element.nodeType == 1) {
+      //Check if user is using their own style
+      if (style !== undefined) {
+        LoadStyle(style);
+      }
       //Make sure that the element text can still be fetched
       var doc = element.innerText ? element.innerText : element.textContent;
       //Processing
