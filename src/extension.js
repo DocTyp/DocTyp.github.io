@@ -1,5 +1,45 @@
 (function(exports) {
   /*============================================================
+  ===========================Variables==========================
+  ============================================================*/
+  var prefix = 'doctyp-';
+  var header = {
+    'header1': {pattern: /\#/gm, regex: /^\#{1}(?!\#)(.*?)$/gm},
+    'header2': {pattern: /\#/gm, regex: /^\#{2}(?!\#)(.*?)$/gm},
+    'header3': {pattern: /\#/gm, regex: /^\#{3}(?!\#)(.*?)$/gm},
+    'header4': {pattern: /\#/gm, regex: /^\#{4,}(.*?)$/gm}
+  };
+  var style = {
+    'bold': {pattern: /\*/gm, regex: /\*{1,}(.*?)\*{1,}/gm},
+    'italic': {pattern: /\//gm, regex: /\/{1,}(.*?)\/{1,}/gm},
+    'underline': {pattern: /\_/gm, regex: /\_{1,}(.*?)\_{1,}/gm},
+    'strike': {pattern: /\~/gm, regex: /\~{1,}(.*?)\~{1,}/gm},
+    'highlight': {pattern: /\=/gm, regex: /\={1,}(.*?)\={1,}/gm}
+  };
+  var rule = {
+    'rule-solid': {pattern: /\-/gm, regex: /\-{4,}/gm},
+    'rule-dash': {pattern: /\./gm, regex: /\.{4,}/gm}
+  };
+  var block = {
+    'code': {pattern: /\|/gm, regex: /\|{1,}(.*?)\|{1,}/gm},
+    'pre-external': {pattern: /(\`|\[(.*?)\])/gm, regex: /(\[(.*?)\|(.*?)\])\`{1,}([\s\S]*?)\`{1,}/gm},
+    'pre': {pattern: /\`/gm, regex: /\`{1,}([\s\S]*?)\`{1,}/gm},
+    'quote': {pattern: /[\{\}]/gm, regex: /\{{1,}([\s\S]*?)\}{1,}/gm}
+  };
+  var list = {
+    'header1': {pattern: /\#/gm, regex: /^\#{1}(?!\#)(.*?)$/gm},
+    'header2': {pattern: /\#/gm, regex: /^\#{2}(?!\#)(.*?)$/gm},
+    'header3': {pattern: /\#/gm, regex: /^\#{3}(?!\#)(.*?)$/gm},
+    'header4': {pattern: /\#/gm, regex: /^\#{4,}(.*?)$/gm}
+  };
+  var link = {
+    'header1': {pattern: /\#/gm, regex: /^\#{1}(?!\#)(.*?)$/gm},
+    'header2': {pattern: /\#/gm, regex: /^\#{2}(?!\#)(.*?)$/gm},
+    'header3': {pattern: /\#/gm, regex: /^\#{3}(?!\#)(.*?)$/gm},
+    'header4': {pattern: /\#/gm, regex: /^\#{4,}(.*?)$/gm}
+  };
+  
+  /*============================================================
   ============================Header============================
   ============================================================*/
   exports.Header = function(doc) {
@@ -45,22 +85,22 @@
       doc = doc.replace(block[key].regex, function(match) {
         var temp;
         if (key != 'pre-external') {
-          temp = Prepare(match).replace(block[key].pattern, '');
+          temp = exports.Prepare(match).replace(block[key].pattern, '');
         }
         if (key == 'code') {
-          return '<code class="' + prefix + key + ' nohighlight language-none">' + Trim(temp) + '</code>';
+          return '<code class="' + prefix + key + ' nohighlight language-none">' + exports.Trim(temp) + '</code>';
         } else if (key == 'pre-external') {
-          var extra = Prepare(match).replace(/(\[|\]|\`([\s\S]*?)\`)/gm, ''),
+          var extra = exports.Prepare(match).replace(/(\[|\]|\`([\s\S]*?)\`)/gm, ''),
             language = extra.split('|')[0].toLowerCase(),
             url = 'Syntax/' + extra.split('|')[1].toLowerCase();
-          temp = Prepare(match).replace(block[key].pattern, '');
-          LoadScript(url + '/script.js');
-          LoadStyle(url + '/' + scheme + '.css');
-          return '<pre class="' + prefix + key + '"><code class="language-' + language + '">' + Trim(temp) + '</code></pre>';
+          temp = exports.Prepare(match).replace(block[key].pattern, '');
+          exports.LoadScript(url + '/script.js');
+          exports.LoadStyle(url + '/' + exports.theme + '.css');
+          return '<pre class="' + prefix + key + '"><code class="language-' + language + '">' + exports.Trim(temp) + '</code></pre>';
         } else if (key == 'pre') {
-          return '<pre class="' + prefix + key + '"><code class="nohighlight language-none">' + Trim(temp) + '</code></pre>';
+          return '<pre class="' + prefix + key + '"><code class="nohighlight language-none">' + exports.Trim(temp) + '</code></pre>';
         } else {
-          return '<span class="' + prefix + key + '">' + Trim(temp) + '</span>';
+          return '<span class="' + prefix + key + '">' + exports.Trim(temp) + '</span>';
         }
       });
     }
