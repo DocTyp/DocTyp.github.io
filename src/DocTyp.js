@@ -15,16 +15,32 @@
   @param: 
     exports - Contains all the public variables and functions of the module.
     element - The HTML DOM element that will be Docified.
+    style - You can optionally set the style to Dark or Light.
     doc - The elements text that will be Docified.
 */
 var DocTyp = (function(exports) {
   /*============================================================
   ===========================Variable===========================
   ============================================================*/
+  var 
   
   /*============================================================
   ============================Private===========================
   ============================================================*/
+  function LoadStyle(style) {
+    var link = document.createElement('link');
+    link.type = 'text/css';
+    link.rel = 'stylesheet';
+    link.href = 'Style/' + style.toLowerCase() + '.css';
+    link.media = 'none';
+    link.onload = function() {
+      if (media != 'all') {
+        link.media = 'all';
+      }
+    };
+    document.getElementByTagName('head')[0].appendChild(link);
+  }
+  //Processing
   function Header(doc) {
     return doc;
   }
@@ -50,7 +66,7 @@ var DocTyp = (function(exports) {
   /*============================================================
   ============================Public============================
   ============================================================*/
-  exports.Docify = function(element) {
+  exports.Docify = function(element, style) {
     //Check if element is an element
     if (element.nodeType && element.nodeType == 1) {
       //Make sure that the element text can still be fetched
