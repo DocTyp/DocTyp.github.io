@@ -69,14 +69,14 @@ var DocTyp = (function(exports) {
     var script = document.createElement('script');
     script.type = 'text/javascript';
     script.async = true;
-    script.src = url;
+    script.src = 'https://doctyp.github.io/src/' + url;
     document.getElementsByTagName('head')[0].appendChild(script);
   }
-  function LoadStyle(style) {
+  function LoadStyle(url) {
     var link = document.createElement('link');
     link.type = 'text/css';
     link.rel = 'stylesheet';
-    link.href = 'Style/' + style.toLowerCase() + '.css';
+    link.href = 'https://doctyp.github.io/src/' + url;
     link.media = 'none';
     link.onload = function() {
       if (media != 'all') {
@@ -163,8 +163,8 @@ var DocTyp = (function(exports) {
     if (element.nodeType && element.nodeType == 1) {
       //Check if user is using their own style
       if (theme !== undefined) {
-        scheme = theme;
-        LoadStyle(theme);
+        scheme = theme.toLowerCase();
+        LoadStyle('Style/' + theme.toLowerCase() + '.css');
       }
       //Cater for older browsers
       var doc = element.innerText ? element.innerText : element.textContent;
