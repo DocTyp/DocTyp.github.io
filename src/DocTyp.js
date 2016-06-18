@@ -128,9 +128,9 @@ var DocTyp = (function(exports) {
           temp = Prepare(match).replace(block[key].pattern, '');
           LoadScript(url + '/script.js');
           LoadStyle(url + '/' + scheme + '.css');
-          return '<pre class="' + prefix + key + ' ' + language + '"><code class="' + language + '">' + Trim(temp) + '</code></pre>';
+          return '<pre class="' + prefix + key + ' language-' + language + ' ' + language + '"><code class="language-' + language + ' ' + language + '">' + Trim(temp) + '</code></pre>';
         } else if (key == 'pre') {
-          return '<pre class="' + prefix + key + ' ' + language + '"><code>' + Trim(temp) + '</code></pre>';
+          return '<pre class="' + prefix + key + ' nohighlight language-none"><code class="nohighlight language-none">' + Trim(temp) + '</code></pre>';
         } else {
           return '<span class="' + prefix + key + '">' + Trim(temp) + '</span>';
         }
