@@ -161,6 +161,8 @@ var DocTyp = (function(exports) {
   exports.Docify = function(element, theme) {
     //Check if element is an element
     if (element.nodeType && element.nodeType == 1) {
+      //Adding class to element
+      element.setAttribute('class', 'doctyp');
       //Check if user is using their own style
       if (theme !== undefined) {
         scheme = theme.toLowerCase();
