@@ -132,7 +132,7 @@ var DocTyp = (function(exports) {
         } else if (key == 'pre') {
           return '<pre class="' + prefix + key + ' ' + language + '"><code>' + Trim(temp) + '</code></pre>';
         } else {
-          return '<span class="' + prefix + key + '"><span class="' + prefix + 'border"></span><span class="' + prefix + 'content">' + Trim(temp) + '</span></span>';
+          return '<span class="' + prefix + key + '">' + Trim(temp) + '</span>';
         }
       });
     }
