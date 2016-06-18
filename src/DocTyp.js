@@ -38,7 +38,7 @@ var DocTyp = (function(exports) {
   };
   var rule = {
     'rule-solid': {pattern: /\-/gm, regex: /\-{4,}/gm},
-    'rule-dash': {pattern: /\_/gm, regex: /\_{4,}/gm}
+    'rule-dash': {pattern: /\./gm, regex: /\.{4,}/gm}
   };
   var block = {
     'header1': {pattern: /\#/gm, regex: /^\#{1}(?!\#)(.*?)$/gm},
