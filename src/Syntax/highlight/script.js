@@ -4,9 +4,11 @@ c:[{cN:"comment",b:/\(\*/,e:/\*\)/},e.ASM,e.QSM,e.CNM,{b:/\{/,e:/\}/,i:/:/}]}});
 
 //Call
 (function() {
+  hljs.initHighlightingOnLoad();
+  /*
   hljs.initHighlighting();
   var blocks = document.getElementsByTagName('pre');
   for (block in blocks) {
     //hljs.highlightBlock(block);
-  }
+  }*/
 })();
