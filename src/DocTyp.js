@@ -82,7 +82,7 @@ var DocTyp = (function(exports) {
       if (style !== undefined) {
         LoadStyle(style);
       }
-      //Make sure that the element text can still be fetched
+      //Cater for older browsers
       var doc = element.innerText ? element.innerText : element.textContent;
       //Processing
       doc = Header(doc);
@@ -90,12 +90,8 @@ var DocTyp = (function(exports) {
       doc = Rule(doc);
       doc = Block(doc);
       doc = List(doc);
-      //Cater for older browsers
-      if (element.innerText) {
-        element.innerText = doc;
-      } else {
-        element.textContent = doc;
-      }
+      //Replace text with new text
+      element.innerHTML = doc;
     } else {
       throw('The element is not defined or is not a DOM element.');
     }
