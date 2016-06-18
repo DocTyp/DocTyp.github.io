@@ -18,7 +18,7 @@
     theme - You can optionally set the style to Dark or Light.
     doc - The elements text that will be Docified.
   @credit: 
-    Prism, Highlight
+    Prism, Highlight, SHJS
 */
 var DocTyp = (function(exports) {
   /*============================================================
@@ -28,35 +28,7 @@ var DocTyp = (function(exports) {
   /*============================================================
   ============================Private===========================
   ============================================================*/
-  
-  /*============================================================
-  ============================Loader============================
-  ============================================================*/
-  exports.LoadScript = function(url) {
-    var script = document.createElement('script');
-    script.type = 'text/javascript';
-    script.async = true;
-    script.src = 'https://doctyp.github.io/src/' + url;
-    document.getElementsByTagName('head')[0].appendChild(script);
-  };
-  exports.LoadStyle = function(url) {
-    var link = document.createElement('link');
-    link.type = 'text/css';
-    link.rel = 'stylesheet';
-    link.href = 'https://doctyp.github.io/src/' + url;
-    link.media = 'none';
-    link.onload = function() {
-      if (link.media != 'all') {
-        link.media = 'all';
-      }
-    };
-    document.getElementsByTagName('head')[0].appendChild(link);
-  };
-  
-  /*============================================================
-  ============================Public============================
-  ============================================================*/
-  exports.Docify = function(element, theme) {
+  function Single(element, theme) {
     //Check if element is an element
     if (element.nodeType && element.nodeType == 1) {
       //Adding class to element
@@ -82,6 +54,72 @@ var DocTyp = (function(exports) {
     } else {
       throw('The element is not defined or is not a DOM element.');
     }
+  }
+  
+  function Multiple(elements, theme) {
+    for (element in elements) {
+      //Check if element is an element
+      if (element.nodeType && element.nodeType == 1) {
+        //Adding class to element
+        element.setAttribute('class', 'doctyp');
+        //Check if user is using their own style
+        if (theme !== undefined) {
+          exports.theme = theme.toLowerCase();
+          exports.LoadStyle('Style/' + theme.toLowerCase() + '.css');
+        } else {
+          exports.theme = 'light';
+        }
+        //Cater for older browsers
+        var doc = element.innerText ? element.innerText : element.textContent;
+        //Processing
+        doc = exports.Header(doc);
+        doc = exports.Style(doc);
+        doc = exports.Rule(doc);
+        doc = exports.Block(doc);
+        doc = exports.List(doc);
+        doc = exports.Clean(doc);
+        //Replace text with new text
+        element.innerHTML = doc;
+      } else {
+        throw('The element is not defined or is not a DOM element.');
+      }
+    }
+  }
+  
+  /*============================================================
+  ============================Public============================
+  ============================================================*/
+  exports.Docify = function(element, theme) {
+    //Check if more than one element
+    if (!element.length) {
+      Single(element, theme);
+    } else {
+      Multiple(element, theme);
+    }
+  };
+  
+  /*============================================================
+  ============================Loader============================
+  ============================================================*/
+  exports.LoadScript = function(url) {
+    var script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.async = true;
+    script.src = 'https://doctyp.github.io/src/' + url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  };
+  exports.LoadStyle = function(url) {
+    var link = document.createElement('link');
+    link.type = 'text/css';
+    link.rel = 'stylesheet';
+    link.href = 'https://doctyp.github.io/src/' + url;
+    link.media = 'none';
+    link.onload = function() {
+      if (link.media != 'all') {
+        link.media = 'all';
+      }
+    };
+    document.getElementsByTagName('head')[0].appendChild(link);
   };
   
   /*============================================================
