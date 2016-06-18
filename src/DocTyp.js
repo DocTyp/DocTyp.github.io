@@ -22,6 +22,13 @@ var DocTyp = (function(exports) {
   /*============================================================
   ===========================Variable===========================
   ============================================================*/
+  var prefix = 'doctyp-';
+  var header = {
+    {type: prefix + 'header1', pattern: /\#/gm, regex: /^\#{1}(?!\#)(.*?)$/gm},
+    {type: prefix + 'header2', pattern: /\#/gm, regex: /^\#{2}(?!\#)(.*?)$/gm},
+    {type: prefix + 'header3', pattern: /\#/gm, regex: /^\#{3}(?!\#)(.*?)$/gm},
+    {type: prefix + 'header3', pattern: /\#/gm, regex: /^\#{4,}(.*?)$/gm}
+  };
   
   /*============================================================
   ============================Private===========================
@@ -41,6 +48,12 @@ var DocTyp = (function(exports) {
   }
   //Processing
   function Header(doc) {
+    for (var object in header) {
+      doc = doc.replace(object.regex, function(match) {
+        var temp = match.replace(object.pattern, '');
+        return '<span class="' + object.type + '">' + temp + '</span>';
+      });
+    }
     return doc;
   }
   function Style(doc) {
