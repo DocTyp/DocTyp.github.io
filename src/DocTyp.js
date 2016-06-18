@@ -120,7 +120,7 @@ var DocTyp = (function(exports) {
           temp = Prepare(match).replace(block[key].pattern, '');
         }
         if (key == 'code') {
-          return '<code class="' + prefix + key + '">' + Trim(temp) + '</code>';
+          return '<code class="' + prefix + key + ' nohighlight language-none">' + Trim(temp) + '</code>';
         } else if (key == 'pre-external') {
           var extra = Prepare(match).replace(/(\[|\]|\`([\s\S]*?)\`)/gm, ''),
             language = extra.split('|')[0].toLowerCase(),
@@ -128,9 +128,9 @@ var DocTyp = (function(exports) {
           temp = Prepare(match).replace(block[key].pattern, '');
           LoadScript(url + '/script.js');
           LoadStyle(url + '/' + scheme + '.css');
-          return '<pre class="' + prefix + key + ' language-' + language + ' ' + language + '"><code class="language-' + language + ' ' + language + '">' + Trim(temp) + '</code></pre>';
+          return '<pre class="' + prefix + key + '"><code class="language-' + language + '">' + Trim(temp) + '</code></pre>';
         } else if (key == 'pre') {
-          return '<pre class="' + prefix + key + ' nohighlight language-none"><code class="nohighlight language-none">' + Trim(temp) + '</code></pre>';
+          return '<pre class="' + prefix + key + '"><code class="nohighlight language-none">' + Trim(temp) + '</code></pre>';
         } else {
           return '<span class="' + prefix + key + '">' + Trim(temp) + '</span>';
         }
