@@ -96,7 +96,8 @@
           temp = exports.Prepare(match).replace(block[key].pattern, '');
           exports.LoadScript(url + '/script.js');
           exports.LoadStyle(url + '/' + exports.theme + '.css');
-          return '<pre class="' + prefix + key + '"><code class="language-' + language + '">' + exports.Trim(temp) + '</code></pre>';
+          var classes = 'language-' + language + ' sh_' + language;
+          return '<pre class="' + prefix + key + ' ' + classes + '"><code class="' + classes + '">' + exports.Trim(temp) + '</code></pre>';
         } else if (key == 'pre') {
           return '<pre class="' + prefix + key + '"><code class="nohighlight language-none">' + exports.Trim(temp) + '</code></pre>';
         } else {
