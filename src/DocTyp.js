@@ -120,7 +120,7 @@ var DocTyp = (function(exports) {
           temp = Prepare(match).replace(block[key].pattern, '');
         }
         if (key == 'code') {
-          return '<code class="' + prefix + key + '">' + temp + '</code>';
+          return '<code class="' + prefix + key + '">' + Trim(temp) + '</code>';
         } else if (key == 'pre-external') {
           var extra = Prepare(match).replace(/(\[|\]|\`([\s\S]*?)\`)/gm, ''),
             language = extra.split('|')[0].toLowerCase(),
@@ -128,11 +128,11 @@ var DocTyp = (function(exports) {
           temp = Prepare(match).replace(block[key].pattern, '');
           LoadScript(url + '/script.js');
           LoadStyle(url + '/' + scheme + '.css');
-          return '<pre class="' + prefix + key + ' ' + language + '"><code class="' + language + '">' + temp + '</code></pre>';
+          return '<pre class="' + prefix + key + ' ' + language + '"><code class="' + language + '">' + Trim(temp) + '</code></pre>';
         } else if (key == 'pre') {
-          return '<pre class="' + prefix + key + ' ' + language + '"><code>' + temp + '</code></pre>';
+          return '<pre class="' + prefix + key + ' ' + language + '"><code>' + Trim(temp) + '</code></pre>';
         } else {
-          return '<span class="' + prefix + key + '">' + temp + '</span>';
+          return '<span class="' + prefix + key + '"><span class="' + prefix + 'border"></span><span class="' + prefix + 'content">' + Trim(temp) + '</span></span>';
         }
       });
     }
@@ -147,6 +147,9 @@ var DocTyp = (function(exports) {
   //Cleaning
   function Prepare(doc) {
     return doc.replace(/\<(\/)?span(.*?)\>/gm, '');
+  }
+  function Trim(doc) {
+    return doc.replace(/(^\s+|\s+$)/gm, '');
   }
   function Clean(doc) {
     return doc.replace(/\n/gm, '<br/>');
