@@ -50,6 +50,7 @@ var DocTyp = (function(exports) {
   function Header(doc) {
     for (var object in header) {
       var index = header.indexOf(object);
+      console.log(object[index].regex);
       doc = doc.replace(object[index].regex, function(match) {
         var temp = match.replace(object[index].pattern, '');
         return '<span class="' + object[index].type + '">' + temp + '</span>';
