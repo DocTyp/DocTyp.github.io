@@ -58,9 +58,6 @@ var DocTyp = (function(exports) {
   function Link(doc) {
     return doc;
   }
-  function Clean(doc) {
-    return doc.replace(/\n/gm, '<br/>');
-  }
   
   /*============================================================
   ============================Public============================
@@ -80,7 +77,6 @@ var DocTyp = (function(exports) {
       doc = Rule(doc);
       doc = Block(doc);
       doc = List(doc);
-      doc = Clean(doc);
       //Cater for older browsers
       if (element.innerText) {
         element.innerText = doc;
