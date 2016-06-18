@@ -29,6 +29,37 @@ var DocTyp = (function(exports) {
     'header3': {pattern: /\#/gm, regex: /^\#{3}(?!\#)(.*?)$/gm},
     'header4': {pattern: /\#/gm, regex: /^\#{4,}(.*?)$/gm}
   };
+  var style = {
+    'bold': {pattern: /\*/gm, regex: /\*{1,}(.*?)\*{1,}/gm},
+    'italic': {pattern: /\//gm, regex: /\/{1,}(.*?)\/{1,}/gm},
+    'underline': {pattern: /\_/gm, regex: /\_{1,}(.*?)\_{1,}/gm},
+    'strike': {pattern: /\~/gm, regex: /\~{1,}(.*?)\~{1,}/gm},
+    'highlight': {pattern: /\=/gm, regex: /\={1,}(.*?)\={1,}/gm}
+  };
+  var rule = {
+    'header1': {pattern: /\#/gm, regex: /^\#{1}(?!\#)(.*?)$/gm},
+    'header2': {pattern: /\#/gm, regex: /^\#{2}(?!\#)(.*?)$/gm},
+    'header3': {pattern: /\#/gm, regex: /^\#{3}(?!\#)(.*?)$/gm},
+    'header4': {pattern: /\#/gm, regex: /^\#{4,}(.*?)$/gm}
+  };
+  var block = {
+    'header1': {pattern: /\#/gm, regex: /^\#{1}(?!\#)(.*?)$/gm},
+    'header2': {pattern: /\#/gm, regex: /^\#{2}(?!\#)(.*?)$/gm},
+    'header3': {pattern: /\#/gm, regex: /^\#{3}(?!\#)(.*?)$/gm},
+    'header4': {pattern: /\#/gm, regex: /^\#{4,}(.*?)$/gm}
+  };
+  var list = {
+    'header1': {pattern: /\#/gm, regex: /^\#{1}(?!\#)(.*?)$/gm},
+    'header2': {pattern: /\#/gm, regex: /^\#{2}(?!\#)(.*?)$/gm},
+    'header3': {pattern: /\#/gm, regex: /^\#{3}(?!\#)(.*?)$/gm},
+    'header4': {pattern: /\#/gm, regex: /^\#{4,}(.*?)$/gm}
+  };
+  var link = {
+    'header1': {pattern: /\#/gm, regex: /^\#{1}(?!\#)(.*?)$/gm},
+    'header2': {pattern: /\#/gm, regex: /^\#{2}(?!\#)(.*?)$/gm},
+    'header3': {pattern: /\#/gm, regex: /^\#{3}(?!\#)(.*?)$/gm},
+    'header4': {pattern: /\#/gm, regex: /^\#{4,}(.*?)$/gm}
+  };
   
   /*============================================================
   ============================Private===========================
@@ -50,13 +81,19 @@ var DocTyp = (function(exports) {
   function Header(doc) {
     for (key in header) {
       doc = doc.replace(header[key].regex, function(match) {
-        var temp = match.replace(header[key].pattern, '');
+        var temp = Prepare(match).replace(header[key].pattern, '');
         return '<span class="' + prefix + key + '">' + temp + '</span>';
       });
     }
     return doc;
   }
   function Style(doc) {
+    for (key in style) {
+      doc = doc.replace(style[key].regex, function(match) {
+        var temp = Prepare(match).replace(style[key].pattern, '');
+        return '<span class="' + prefix + key + '">' + temp + '</span>';
+      });
+    }
     return doc;
   }
   function Rule(doc) {
@@ -70,6 +107,10 @@ var DocTyp = (function(exports) {
   }
   function Link(doc) {
     return doc;
+  }
+  //Cleaning
+  function Prepare(doc) {
+    return doc.replace(/\<(\/)?span(.*?)\>/gm, '');
   }
   function Clean(doc) {
     return doc.replace(/\n/gm, '<br/>');
