@@ -37,7 +37,7 @@ var DocTyp = (function(exports) {
         link.media = 'all';
       }
     };
-    document.getElementByTagName('head')[0].appendChild(link);
+    document.getElementsByTagName('head')[0].appendChild(link);
   }
   //Processing
   function Header(doc) {
