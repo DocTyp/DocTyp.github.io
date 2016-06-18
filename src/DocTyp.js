@@ -18,7 +18,7 @@
     theme - You can optionally set the style to Dark or Light.
     doc - The elements text that will be Docified.
   @credit: 
-    Prism, Highlight, SHJS
+    Prism, Highlight, SHJS, Rainbow
 */
 var DocTyp = (function(exports) {
   /*============================================================
