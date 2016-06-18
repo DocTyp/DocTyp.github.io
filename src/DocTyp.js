@@ -23,12 +23,12 @@ var DocTyp = (function(exports) {
   ===========================Variable===========================
   ============================================================*/
   var prefix = 'doctyp-';
-  var header = {
+  var header = [
     {type: prefix + 'header1', pattern: /\#/gm, regex: /^\#{1}(?!\#)(.*?)$/gm},
     {type: prefix + 'header2', pattern: /\#/gm, regex: /^\#{2}(?!\#)(.*?)$/gm},
     {type: prefix + 'header3', pattern: /\#/gm, regex: /^\#{3}(?!\#)(.*?)$/gm},
     {type: prefix + 'header3', pattern: /\#/gm, regex: /^\#{4,}(.*?)$/gm}
-  };
+  ];
   
   /*============================================================
   ============================Private===========================
