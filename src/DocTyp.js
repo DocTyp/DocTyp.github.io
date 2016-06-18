@@ -37,10 +37,8 @@ var DocTyp = (function(exports) {
     'highlight': {pattern: /\=/gm, regex: /\={1,}(.*?)\={1,}/gm}
   };
   var rule = {
-    'header1': {pattern: /\#/gm, regex: /^\#{1}(?!\#)(.*?)$/gm},
-    'header2': {pattern: /\#/gm, regex: /^\#{2}(?!\#)(.*?)$/gm},
-    'header3': {pattern: /\#/gm, regex: /^\#{3}(?!\#)(.*?)$/gm},
-    'header4': {pattern: /\#/gm, regex: /^\#{4,}(.*?)$/gm}
+    'rule-solid': {pattern: /\-/gm, regex: /\-{4,}/gm},
+    'rule-dash': {pattern: /\_/gm, regex: /\_{4,}/gm}
   };
   var block = {
     'header1': {pattern: /\#/gm, regex: /^\#{1}(?!\#)(.*?)$/gm},
@@ -97,6 +95,11 @@ var DocTyp = (function(exports) {
     return doc;
   }
   function Rule(doc) {
+    for (key in rule) {
+      doc = doc.replace(rule[key].regex, function(match) {
+        return '<hr class="' + prefix + key + '"/>';
+      });
+    }
     return doc;
   }
   function Block(doc) {
