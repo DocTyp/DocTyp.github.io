@@ -15,14 +15,17 @@
   @param: 
     exports - Contains all the public variables and functions of the module.
     element - The HTML DOM element that will be Docified.
-    style - You can optionally set the style to Dark or Light.
+    theme - You can optionally set the style to Dark or Light.
     doc - The elements text that will be Docified.
+  @credit: 
+    Prism, Highlight
 */
 var DocTyp = (function(exports) {
   /*============================================================
   ===========================Variable===========================
   ============================================================*/
-  var prefix = 'doctyp-';
+  var prefix = 'doctyp-',
+    scheme;
   var header = {
     'header1': {pattern: /\#/gm, regex: /^\#{1}(?!\#)(.*?)$/gm},
     'header2': {pattern: /\#/gm, regex: /^\#{2}(?!\#)(.*?)$/gm},
@@ -41,10 +44,10 @@ var DocTyp = (function(exports) {
     'rule-dash': {pattern: /\./gm, regex: /\.{4,}/gm}
   };
   var block = {
-    'header1': {pattern: /\#/gm, regex: /^\#{1}(?!\#)(.*?)$/gm},
-    'header2': {pattern: /\#/gm, regex: /^\#{2}(?!\#)(.*?)$/gm},
-    'header3': {pattern: /\#/gm, regex: /^\#{3}(?!\#)(.*?)$/gm},
-    'header4': {pattern: /\#/gm, regex: /^\#{4,}(.*?)$/gm}
+    'code': {pattern: /\|/gm, regex: /\|{1,}(.*?)\|{1,}/gm},
+    'pre-external': {pattern: /(\`|\[(.*?)\])/gm, regex: /(\[(.*?)\|(.*?)\])\`{1,}([\s\S]*?)\`{1,}/gm},
+    'pre': {pattern: /\`/gm, regex: /\`{1,}([\s\S]*?)\`{1,}/gm},
+    'quote': {pattern: /[\{\}]/gm, regex: /\{{1,}([\s\S]*?)\}{1,}/gm}
   };
   var list = {
     'header1': {pattern: /\#/gm, regex: /^\#{1}(?!\#)(.*?)$/gm},
@@ -62,6 +65,13 @@ var DocTyp = (function(exports) {
   /*============================================================
   ============================Private===========================
   ============================================================*/
+  function LoadScript(url) {
+    var script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.async = true;
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
   function LoadStyle(style) {
     var link = document.createElement('link');
     link.type = 'text/css';
@@ -103,6 +113,29 @@ var DocTyp = (function(exports) {
     return doc;
   }
   function Block(doc) {
+    for (key in block) {
+      doc = doc.replace(block[key].regex, function(match) {
+        var temp;
+        if (key != 'pre-external') {
+          temp = Prepare(match).replace(block[key].pattern, '');
+        }
+        if (key == 'code') {
+          return '<code class="' + prefix + key + '">' + temp + '</code>';
+        } else if (key == 'pre-external') {
+          var extra = Prepare(match).replace(/(\[|\]|\`([\s\S]*?)\`)/gm, ''),
+            language = extra.split('|')[0].toLowerCase(),
+            url = 'Syntax/' + extra.split('|')[1].toLowerCase();
+          temp = Prepare(match).replace(block[key].pattern, '');
+          LoadScript(url + '/script.js');
+          LoadStyle(url + '/' + scheme + '.css');
+          return '<pre class="' + prefix + key + ' ' + language + '"><code class="' + language + '">' + temp + '</code></pre>';
+        } else if (key == 'pre') {
+          return '<pre class="' + prefix + key + ' ' + language + '"><code>' + temp + '</code></pre>';
+        } else {
+          return '<span class="' + prefix + key + '">' + temp + '</span>';
+        }
+      });
+    }
     return doc;
   }
   function List(doc) {
@@ -122,12 +155,13 @@ var DocTyp = (function(exports) {
   /*============================================================
   ============================Public============================
   ============================================================*/
-  exports.Docify = function(element, style) {
+  exports.Docify = function(element, theme) {
     //Check if element is an element
     if (element.nodeType && element.nodeType == 1) {
       //Check if user is using their own style
-      if (style !== undefined) {
-        LoadStyle(style);
+      if (theme !== undefined) {
+        scheme = theme;
+        LoadStyle(theme);
       }
       //Cater for older browsers
       var doc = element.innerText ? element.innerText : element.textContent;
