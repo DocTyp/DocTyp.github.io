@@ -1,53 +1,80 @@
+/*
+  Convert the contents of an HTML DOM element into a
+  styled text document for an easier reading
+  experience or to bring out certain features in the
+  document. You can create your own README document.
+  
+  if (redistribute == true) {
+    return credit;
+  }
+  
+  --------------------------------------------------
+  
+  @DocTyp
+  @author: Alexander Hovy
+  @param: 
+    exports - Contains all the public variables and functions of the module.
+    element - The HTML DOM element that will be Docified.
+    doc - The elements text that will be Docified.
+*/
 var DocTyp = (function(exports) {
-  var patterns = {
-    { type: 'header1',
-      remove: /[\#]/igm,
-      regex: /[\#]{1}.+/igm },
-    { type: 'header2',
-      remove: /[\#]/igm,
-      regex: /[\#]{2}.+/igm },
-    { type: 'header3',
-      remove: /[\#]/igm,
-      regex: /[\#]{3}.+/igm },
-    { type: 'header4',
-      remove: /[\#]/igm,
-      regex: /[\#]{4}.+/igm },
-    { type: 'bold',
-      remove: /[\*]/igm,
-      regex: /[\*]{2}(.*?)[\*]{2}/igm },
-    { type: 'italic',
-      remove: /[\*]/igm,
-      regex: /[\*]{1}(.*?)[\*]{1}(?![\*])/igm },
-    { type: 'rule-solid',
-      remove: /[\-]/igm,
-      regex: /[\-]{4,}.+/igm },
-    { type: 'rule-dash',
-      remove: /[\_]/igm,
-      regex: /[\_]{4,}.+/igm }
-  };
-  function Output(doc) {
-    for (var pattern in patterns) {
-      doc = doc.replace(pattern.regex, function(match) {
-        match = match.replace(pattern.remove, '');
-        return '<span class="doctype-' + pattern.type + '">' + match + '</span>';
-      });
-    }
+  /*============================================================
+  ===========================Variable===========================
+  ============================================================*/
+  
+  /*============================================================
+  ============================Private===========================
+  ============================================================*/
+  function Header(doc) {
     return doc;
   }
-  exports.Style = function(element) {
+  function Style(doc) {
+    return doc;
+  }
+  function Rule(doc) {
+    return doc;
+  }
+  function Block(doc) {
+    return doc;
+  }
+  function List(doc) {
+    return doc;
+  }
+  function Link(doc) {
+    return doc;
+  }
+  function Clean(doc) {
+    return doc.replace(/\n/gm, '<br/>');
+  }
+  
+  /*============================================================
+  ============================Public============================
+  ============================================================*/
+  exports.Docify = function(element) {
+    //Check if element is an element
     if (element.nodeType && element.nodeType == 1) {
-      var doc = element.innerText ? element.innerText : element.textContent,
-        output = Output(doc),
-        newDoc = output.replace(/\n/gm, '<br/>');
-
+      //Make sure that the element text can still be fetched
+      var doc = element.innerText ? element.innerText : element.textContent;
+      //Processing
+      doc = Header(doc);
+      doc = Style(doc);
+      doc = Rule(doc);
+      doc = Block(doc);
+      doc = List(doc);
+      doc = Clean(doc);
+      //Cater for older browsers
       if (element.innerText) {
-        element.innerText = newDoc;
+        element.innerText = doc;
       } else {
-        element.textContent = newDoc;
+        element.textContent = doc;
       }
     } else {
       throw('The element is not defined or is not a DOM element.');
     }
   };
+  
+  /*============================================================
+  ============================Export============================
+  ============================================================*/
   return exports;
 })({});
