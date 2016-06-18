@@ -1,3 +1,23 @@
+/*
+  Convert the contents of an HTML DOM element into a
+  styled text document for an easier reading
+  experience or to bring out certain features in the
+  document. You can create your own README document.
+  
+  if (redistribute == true) {
+    return credit;
+  }
+  
+  --------------------------------------------------
+  
+  @DocTyp
+  @author: Alexander Hovy
+  @param: 
+    exports - Contains all the public variables and functions of the module.
+    doc - The elements text that will be Docified.
+  @credit: 
+    Prism, Highlight, SHJS, Rainbow
+*/
 (function(exports) {
   /*============================================================
   ===========================Variables==========================
