@@ -79,7 +79,7 @@ var DocTyp = (function(exports) {
     link.href = 'https://doctyp.github.io/src/' + url;
     link.media = 'none';
     link.onload = function() {
-      if (media != 'all') {
+      if (link.media != 'all') {
         link.media = 'all';
       }
     };
