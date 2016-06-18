@@ -23,12 +23,12 @@ var DocTyp = (function(exports) {
   ===========================Variable===========================
   ============================================================*/
   var prefix = 'doctyp-';
-  var header = [
-    {type: prefix + 'header1', pattern: '[\#]', regex: '^[\#]{1}(?![\#])(.*?)$'},
-    {type: prefix + 'header2', pattern: '[\#]', regex: '^[\#]{2}(?![\#])(.*?)$'},
-    {type: prefix + 'header3', pattern: '[\#]', regex: '^[\#]{3}(?![\#])(.*?)$'},
-    {type: prefix + 'header3', pattern: '[\#]', regex: '^[\#]{4,}(.*?)$'}
-  ];
+  var header = {
+    'header1': {pattern: /\#/gm, regex: /^\#{1}(?!\#)(.*?)$/gm},
+    'header2': {pattern: /\#/gm, regex: /^\#{2}(?!\#)(.*?)$/gm},
+    'header3': {pattern: /\#/gm, regex: /^\#{3}(?!\#)(.*?)$/gm},
+    'header4': {pattern: /\#/gm, regex: /^\#{4,}(.*?)$/gm}
+  };
   
   /*============================================================
   ============================Private===========================
@@ -48,11 +48,10 @@ var DocTyp = (function(exports) {
   }
   //Processing
   function Header(doc) {
-    for (var object in header) {
-      var index = header.indexOf(object);
-      doc = doc.replace(new RegExp(object[index].regex, 'gm'), function(match) {
-        var temp = match.replace(new RegExp(object[index].pattern, 'gm'), '');
-        return '<span class="' + object[index].type + '">' + temp + '</span>';
+    for (key in header) {
+      doc = doc.replace(header[key].regex, function(match) {
+        var temp = match.replace(header[key].pattern, '');
+        return '<span class="' + prefix + key + '">' + temp + '</span>';
       });
     }
     return doc;
