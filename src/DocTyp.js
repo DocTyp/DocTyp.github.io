@@ -57,8 +57,6 @@ var DocTyp = (function(exports) {
   ============================Public============================
   ============================================================*/
   exports.Docify = function(element, theme) {
-    //Load Extra Files
-    exports.LoadScript('extension.js');
     //Check if element is an element
     if (element.nodeType && element.nodeType == 1) {
       //Adding class to element
@@ -91,3 +89,5 @@ var DocTyp = (function(exports) {
   ============================================================*/
   return exports;
 })({});
+//Load Extra
+DocTyp.LoadScript('extension.js');
