@@ -45,7 +45,7 @@
   exports.Header = function(doc) {
     for (key in header) {
       doc = doc.replace(header[key].regex, function(match) {
-        var temp = Prepare(match).replace(header[key].pattern, '');
+        var temp = exports.Prepare(match).replace(header[key].pattern, '');
         return '<span class="' + prefix + key + '">' + temp + '</span>';
       });
     }
@@ -58,7 +58,7 @@
   exports.Style = function(doc) {
     for (key in style) {
       doc = doc.replace(style[key].regex, function(match) {
-        var temp = Prepare(match).replace(style[key].pattern, '');
+        var temp = exports.Prepare(match).replace(style[key].pattern, '');
         return '<span class="' + prefix + key + '">' + temp + '</span>';
       });
     }
