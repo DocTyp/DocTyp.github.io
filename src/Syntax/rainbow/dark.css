@@ -1,18 +1,18 @@
 /**
- * Solarized Dark theme
+ * Twilight theme
  *
- * Adaptation of Solarized Dark from ethanschoonover.com/solarized
+ * Adapted from Michael Sheets' TextMate theme of the same name
  *
- * @author Ethan Schoonover
- * @author David Litmark
- * @version 1.0.0
+ * @author Michael Sheets
+ * @author Jesse Farmer <jesse@20bits.com>
+ * @version 1.0.1
  */
 pre {
-    background: #002b36; /* base03 */
+    background: #141414;
     word-wrap: break-word;
     margin: 0px;
     padding: 10px;
-    color: #839496; /* base0 */
+    color: #F8F8F8;
     font-size: 14px;
     margin-bottom: 20px;
 }
@@ -22,65 +22,61 @@ pre, code {
 }
 
 pre .comment {
-    color: #586e75; /* base01 */
+    color: #5F5A60;
+}
+
+pre .constant.numeric {
+    color: #D87D50;
 }
 
 pre .constant {
-    color: #839496; /* base0 */
+    color: #889AB4;
 }
 
-pre .constant.language {
-    color: #268bd2; /* blue */
-}
-
-pre .constant.regexp {
-    color: #2aa198; /* cyan */
+pre .constant.symbol, pre .constant.language {
+    color: #D87D50;
 }
 
 pre .storage {
-    color: #268bd2; /* blue */
+    color: #F9EE98;
 }
 
-pre .string, pre .comment.docstring {
-    color: #2aa198; /* cyan */
-}
-
-pre .support.tag.script, pre .support.tag.style {
-    color: #2aa198; /* cyan */
+pre .string {
+    color: #8F9D6A;
 }
 
 pre .string.regexp {
-    color: #2aa198; /* cyan */
+    color: #E9C062;
 }
 
-pre .string.regexp.open, pre .string.regexp.close {
-    color: #2aa198; /* cyan */
-}
-
-pre .keyword, pre .selector {
-    color: #859900; /* green */
+pre .keyword, pre .selector, pre .storage {
+    color: #CDA869;
 }
 
 pre .inherited-class {
-    font-style: italic;
+    color: #9B5C2E;
 }
 
 pre .entity {
-    color: #b58900; /* yellow */
+    color: #FF6400;
 }
 
-pre .support, *[data-language="c"] .function.call {
-    color: #859900; /* green */
+pre .support {
+    color: #9B859D;
 }
 
-pre .support.method {
-    color: #839496; /* base0 */
+pre .support.magic {
+    color: #DAD69A;
 }
 
-pre .support.property {
-    color: #839496; /* base0 */
+pre .variable {
+    color: #7587A6;
 }
 
-pre .variable.global, pre .variable.class, pre .variable.instance {
-    color: #839496; /* base0 */
+pre .function, pre .entity.class {
+    color: #9B703F;
+}
+
+pre .support.class-name, pre .support.type {
+    color: #AB99AC;
 }
