@@ -97,7 +97,8 @@
           exports.LoadScript(url + '/script.js');
           exports.LoadStyle(url + '/' + exports.theme + '.css');
           var classes = 'language-' + language + ' sh_' + language + ' prettyprint lang-' + language;
-          return '<pre class="' + prefix + key + ' ' + classes + '"><code class="' + classes + '">' + exports.Trim(temp) + '</code></pre>';
+          var dataClasses = 'data-language="' + language + '"';
+          return '<pre class="' + prefix + key + ' ' + classes + '" ' + dataClasses + '><code class="' + classes + '" ' + dataClasses + '>' + exports.Trim(temp) + '</code></pre>';
         } else if (key == 'pre') {
           return '<pre class="' + prefix + key + '"><code class="nohighlight language-none">' + exports.Trim(temp) + '</code></pre>';
         } else {
