@@ -14,10 +14,11 @@
   @author: Alexander Hovy
   @param: 
     exports - Contains all the public variables and functions of the module.
-    element - HTML DOM Element or Tag-, Class- or ID Name of a HTML DOM Element.
-    elements - An array of Elements
+    query - HTML DOM Element or Tag-, Class- or ID Name of a HTML DOM Element.
+    element - HTML DOM Element.
+    elements - An array of Elements.
     theme - You can optionally set the style to Dark or Light.
-    doc - The elements text that will be Docified.
+    url - Content of the url that needs to be loaded.
   @credit: 
     Prism, Highlight, SHJS, Rainbow, Prettify
 */
@@ -29,7 +30,7 @@ var DocTyp = (function(exports) {
   /*============================================================
   ============================Private===========================
   ============================================================*/
-  function Single(element, theme) {
+  function Single(element) {
     //Adding class to element
     element.setAttribute('class', 'doctyp');
     //Cater for older browsers
@@ -45,7 +46,7 @@ var DocTyp = (function(exports) {
     element.innerHTML = doc;
   }
   
-  function Multiple(elements, theme) {
+  function Multiple(elements) {
     //Check if any elements were found
     if (elements.length > 0) {
       for (var a = 0; a < elements.length; a++) {
