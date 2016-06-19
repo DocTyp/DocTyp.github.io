@@ -62,13 +62,13 @@
     'list-letter': {pattern: /(\a\.|\n)/gm, regex: /(^\a\..+\n){1,}/gm},
     'checklist': {pattern: /(\[[Xx\s]?\]|\n)/gm, regex: /(^\[[Xx\s]?\].+\n){1,}/gm}
   };
-  var image = {
-    'image': {pattern: /[]/gm, regex: /\!\[(.*?)\]\((.*?)\)/gm}
-  };
   var link = {
     'url-plain': {pattern: /[]/gm, regex: /\b((https?|ftp|file)\:\/{2}([\w\d\.]+)([\/\?\&\w\d\=\,\.\+\:\;\@\$\%\#\!\_\-]+)?)\b/gm},
     'url-extra': {pattern: /[]/gm, regex: /\[(.*?)\]\((.*?)(https?|ftp|file)\:\/{2}(.*?)\)/gm},
     'email': {pattern: /[]/gm, regex: /\b(([\w\d\.\_\%\+\-]+)\@([\w\d\.\-]+)(\.\w{2,}))\b/gm}
+  };
+  var image = {
+    'image': {pattern: /[]/gm, regex: /\!\[(.*?)\]\((.*?)\)/gm}
   };
   
   /*============================================================
@@ -195,21 +195,6 @@
   };
   
   /*============================================================
-  ============================Image=============================
-  ============================================================*/
-  exports.Image = function(doc) {
-    for (key in image) {
-      doc = doc.replace(image[key].regex, function(match) {
-        var extra = exports.Prepare(match).split(']('),
-          alt = exports.Trim(extra[0].split('![')[1]).toLowerCase(),
-          url = exports.Trim(extra[1].split(')')[0]).toLowerCase();
-        return '<img class="' + prefix + key + '" href="' + url + '" alt="' + alt + '"></img>';
-      });
-    }
-    return doc;
-  };
-  
-  /*============================================================
   =============================Link=============================
   ============================================================*/
   exports.Link = function(doc) {
@@ -223,6 +208,21 @@
             url = extra[1].split(']')[0];
           return '<a class="' + prefix + key + '" href="' + exports.Trim(url) + '" target="_blank">' + exports.Trim(title) + '</a>';
         }
+      });
+    }
+    return doc;
+  };
+  
+  /*============================================================
+  ============================Image=============================
+  ============================================================*/
+  exports.Image = function(doc) {
+    for (key in image) {
+      doc = doc.replace(image[key].regex, function(match) {
+        var extra = exports.Prepare(match).split(']('),
+          alt = exports.Trim(extra[0].split('![')[1]).toLowerCase(),
+          url = exports.Trim(extra[1].split(')')[0]).toLowerCase();
+        return '<img class="' + prefix + key + '" href="' + url + '" alt="' + alt + '"></img>';
       });
     }
     return doc;
