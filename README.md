@@ -119,7 +119,7 @@ DocTyp.Docify('pre', 'Dark');
 
 ###### Images
 ```
-![ Alt Text ]( Path to Image )
+![ DocTyp Logo ]( https://doctyp.github.io/Images/icon.png )
 ```
 
 
