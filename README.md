@@ -8,7 +8,7 @@ See Examples: [Images]()
 ## Usage
 
 ###### HTML
-`https://doctyp.github.io/src/DocTyp.js` OR `https://doctyp.github.io/src/DocTyp.min.js`
+`https://doctyp.github.io/src/DocTyp.js` **OR** `https://doctyp.github.io/src/DocTyp.min.js`
 
 ```html
 <head>
@@ -34,8 +34,6 @@ See Examples: [Images]()
 `theme`: The theme is optional, Dark, Light or leave it blank for a custom theme.
 
 ```javascript
-//Choose a theme or leave it blank for a custom theme
-//@param: Docify(element, theme)
 DocTyp.Docify('pre', 'Dark');
 ```
 
