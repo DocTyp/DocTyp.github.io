@@ -25,7 +25,7 @@ See Examples: [Images]()
 </body>
 ```
 
-###### JavaScript
+###### **JavaScript**
 
 **Parameters**
 
