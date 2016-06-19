@@ -118,7 +118,7 @@
             dataClasses = 'data-language="' + language + '"';
           exports.LoadScript('Syntax/' + service + '/script.js');
           exports.LoadStyle('Syntax/' + service + '/' + exports.theme + '.css');
-          return '<pre class="' + prefix + key + ' ' + classes + '" ' + dataClasses + '><code class="' + classes + '" ' + dataClasses + '>' + exports.RePre(exports.Trim(second)) + '</code></pre>';
+          return '<pre class="' + prefix + key + ' ' + classes + '" ' + dataClasses + '><code class="' + classes + '" ' + dataClasses + '>' + second + '</code></pre>';
         } else if (key == 'quote-extra') {
           var extra = exports.Prepare(match).split(']``'),
             credit = extra[0].split('[')[1],
@@ -128,7 +128,7 @@
           var temp = exports.Prepare(match).replace(block[key].pattern, ''),
             classes = 'nohighlight language-none';
           if (key == 'pre') {
-            return '<pre class="' + prefix + key + ' ' + classes + '"><code class="' + classes + '">' + exports.RePre(exports.Trim(temp)) + '</code></pre>';
+            return '<pre class="' + prefix + key + ' ' + classes + '"><code class="' + classes + '">' + temp + '</code></pre>';
           } else if (key == 'quote') {
             return '<span class="' + prefix + key + '">' + exports.Trim(temp) + '</span>';
           } else {
