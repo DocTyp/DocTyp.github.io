@@ -16,7 +16,7 @@
     exports - Contains all the public variables and functions of the module.
     doc - The elements text that will be Docified.
   @credit: 
-    Prism, Highlight, SHJS, Rainbow
+    Prism, Highlight, SHJS, Rainbow, Prettify
 */
 (function(exports) {
   /*============================================================
@@ -32,7 +32,7 @@
   var style = {
     'bold': {pattern: /\*{2}/gm, regex: /\*{2}(.*?)\*{2}/gm},
     'italic': {pattern: /\*{1}/gm, regex: /\*{1}(.*?)\*{1}/gm},
-    'underline': {pattern: /\_{1,}/gm, regex: /\_{1,}(.*?)\_{1,}/gm},
+    'underline': {pattern: /\.{1,}/gm, regex: /\.{1,}(.*?)\.{1,}/gm},
     'strike': {pattern: /\~{1,}/gm, regex: /\~{1,}(.*?)\~{1,}/gm},
     'highlight': {pattern: /\={1,}/gm, regex: /\={1,}(?!\")(.*?)\={1,}/gm},
     'superscript': {pattern: /\^{2}/gm, regex: /\^{2}(.*?)\^{2}/gm},
