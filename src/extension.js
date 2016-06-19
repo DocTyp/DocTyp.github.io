@@ -63,8 +63,7 @@
     'checklist': {pattern: /(\[[Xx\s]?\]|\n)/gm, regex: /(^\[[Xx\s]?\].+\n){1,}/gm}
   };
   var link = {
-    'url-plain': {pattern: /[]/gm, regex: /\b((https?|ftp|file)\:\/{2}([\w\d\.]+)([\/\?\&\w\d\=\,\.\+\:\;\@\$\%\#\!\_\-]+)?)\b/gm},
-    'url-extra': {pattern: /[]/gm, regex: /\[(.*?)\]\((.*?)(https?|ftp|file)\:\/{2}(.*?)\)/gm},
+    'url': {pattern: /[]/gm, regex: /(\[(.*?)\]\((.*?)(https?|ftp|file)\:\/{2}(.*?)\)|\b((https?|ftp|file)\:\/{2}([\w\d\.]+)([\/\?\&\w\d\=\,\.\+\:\;\@\$\%\#\!\_\-]+)?)\b)/gm},
     'email': {pattern: /[]/gm, regex: /\b(([\w\d\.\_\%\+\-]+)\@([\w\d\.\-]+)(\.\w{2,}))\b/gm}
   };
   var image = {
@@ -200,13 +199,17 @@
   exports.Link = function(doc) {
     for (key in link) {
       doc = doc.replace(link[key].regex, function(match) {
-        if (key == 'url-plain' || key == 'email') {
-          return '<a class="' + prefix + key + '" href="' + exports.Trim(match) + '" target="_blank">' + exports.Trim(match) + '</a>';
+        if (key == 'url') {
+          if ((new RegExp(/\[(.*?)\]\((.*?)(https?|ftp|file)\:\/{2}(.*?)\)/gm)).test(match)) {
+            var extra = exports.Prepare(match).split(']('),
+              title = extra[0].split('[')[1],
+              url = extra[1].split(']')[0];
+            return '<a class="' + prefix + key + '" href="' + exports.Trim(url) + '" target="_blank">' + exports.Trim(title) + '</a>';
+          } else {
+            return '<a class="' + prefix + key + '" href="' + exports.Trim(match) + '" target="_blank">' + exports.Trim(match) + '</a>';
+          }
         } else {
-          var extra = exports.Prepare(match).split(']('),
-            title = extra[0].split('[')[1],
-            url = extra[1].split(']')[0];
-          return '<a class="' + prefix + key + '" href="' + exports.Trim(url) + '" target="_blank">' + exports.Trim(title) + '</a>';
+          return '<a class="' + prefix + key + '" href="' + exports.Trim(match) + '" target="_blank">' + exports.Trim(match) + '</a>';
         }
       });
     }
