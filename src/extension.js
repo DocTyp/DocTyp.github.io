@@ -33,7 +33,7 @@
   var style = {
     'bold': {pattern: /\*{2}/gm, regex: /\*{2}(.*?)\*{2}/gm},
     'italic': {pattern: /\*{1}/gm, regex: /\*{1}(.*?)\*{1}/gm},
-    'underline': {pattern: /\.\.{1,}/gm, regex: /\.\.{1,}(.*?)\.\.{1,}/gm},
+    'underline': {pattern: /\.{2}/gm, regex: /\.{2}(?!\.)(.*?)\.{2}/gm},
     'strike': {pattern: /\~{1,}/gm, regex: /\~{1,}(.*?)\~{1,}/gm},
     'highlight': {pattern: /\={1,}/gm, regex: /\={1,}(?!\")(.*?)\={1,}/gm},
     'superscript': {pattern: /\^{2}/gm, regex: /\^{2}(.*?)\^{2}/gm},
