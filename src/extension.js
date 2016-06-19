@@ -112,14 +112,14 @@
             service = exports.Trim(first[1]).toLowerCase(),
             classes = 'language-' + language + ' sh_' + language + ' prittyprint lang-' + language,
             dataClasses = 'data-language="' + language + '"';
-          exports.LoadScript(service + '/script.js');
-          exports.LoadStyle(service + '/' + exports.theme + '.css');
+          exports.LoadScript('Syntax/' + service + '/script.js');
+          exports.LoadStyle('Syntax/' + service + '/' + exports.theme + '.css');
           return '<pre class="' + prefix + key + ' ' + classes + '" ' + dataClasses + '><code class="' + classes + '" ' + dataClasses + '>' + exports.Trim(second) + '</code></pre>';
         } else if (key == 'quote-extra') {
           var extra = exports.Prepare(match).split(']``'),
             credit = extra[0].split('[')[1],
             quote = extra[1].split('``')[0];
-            return '<span class="' + prefix + key + '"><span class="' + prefix + 'quote">' + exports.Trim(quote) + '</span><span class="' + prefix + 'credit">' + exports.Trim(credit) + '</span></span>';
+          return '<span class="' + prefix + key + '"><span class="' + prefix + 'quote">' + exports.Trim(quote) + '</span><span class="' + prefix + 'credit">' + exports.Trim(credit) + '</span></span>';
         } else {
           var temp = exports.Prepare(match).replace(block[key].pattern, ''),
             classes = 'nohighlight language-none';
@@ -151,7 +151,7 @@
         } else {
           return '<span class="' + prefix + key + '">' + match.replace(/.+/gm, function(line) {
             var temp = exports.Prepare(line).replace(/\[\]/gm, ''),
-              tag = line.match(/\[\]/gm).length ? 'unchecked' : 'checked' ;
+              tag = line.match(/\[\]/gm).length !== null ? 'unchecked' : 'checked' ;
             return '<span class="' + prefix + tag + '"><span class="' + prefix + 'box"></span><span class="' + prefix + 'item">' + exports.Trim(temp) + '</span></span>';
           }) + '</span>';
         }
