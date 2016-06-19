@@ -31,16 +31,16 @@
     'header1': {pattern: /\#/gm, regex: /\#.+/gm}
   };
   var style = {
-    'bold': {pattern: /\*{2}/gm, regex: /\*{2}(.*?)\*{2}/gm},
+    'bold': {pattern: /\*{2}/gm, regex: /\*{2}(?!\*{2,})(.*?)\*{2}/gm},
     'italic': {pattern: /\*/gm, regex: /\*(.*?)\*/gm},
-    'underline': {pattern: /\_/gm, regex: /\_{2}(.*?)\_{2}/gm},
-    'strike': {pattern: /\~/gm, regex: /\~{2}(.*?)\~{2}/gm},
-    'highlight': {pattern: /\=/gm, regex: /\={2}(.*?)\={2}/gm},
-    'superscript': {pattern: /\+/gm, regex: /\+{2}(.*?)\+{2}/gm},
-    'subscript': {pattern: /\-/gm, regex: /\-{2}(.*?)\-{2}/gm}
+    'underline': {pattern: /\_/gm, regex: /\_{2}(?!\_{2,})(.*?)\_{2}/gm},
+    'strike': {pattern: /\~/gm, regex: /\~{2}(?!\~{2,})(.*?)\~{2}/gm},
+    'highlight': {pattern: /\=/gm, regex: /\={2}(?!\={2,})(.*?)\={2}/gm},
+    'superscript': {pattern: /\+/gm, regex: /\+{2}(?!\+{2,})(.*?)\+{2}/gm},
+    'subscript': {pattern: /\-/gm, regex: /\-{2}(?!\-{2,})(.*?)\-{2}/gm}
   };
   var rule = {
-    'rule-solid': {pattern: /[]/gm, regex: /\={4,}/gm},
+    'rule-solid': {pattern: /[]/gm, regex: /\_{4,}/gm},
     'rule-dash': {pattern: /[]/gm, regex: /\-{4,}/gm},
     'rule-dotted': {pattern: /[]/gm, regex: /\.{4,}/gm}
   };
@@ -81,7 +81,11 @@
     for (key in header) {
       doc = doc.replace(header[key].regex, function(match) {
         var temp = exports.Prepare(match).replace(header[key].pattern, '');
-        return '<span class="' + prefix + key + '">' + exports.Trim(temp) + '</span>';
+        if (key == 'header1') {
+          return '<span class="' + prefix + key + '">' + exports.Trim(temp) + '</span><hr class="' + prefix + 'rule-header">';
+        } else {
+          return '<span class="' + prefix + key + '">' + exports.Trim(temp) + '</span>';
+        }
       });
     }
     return doc;
