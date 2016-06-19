@@ -151,7 +151,7 @@
         } else {
           return '<span class="' + prefix + key + '">' + match.replace(/.+/gm, function(line) {
             var temp = exports.Prepare(line).replace(/\[\]/gm, ''),
-              tag = line.match(/\[\]/gm).length != null ? 'unchecked' : 'checked' ;
+              tag = (new RegExp('\[\]', 'gm')).test(line) ? 'unchecked' : 'checked' ;
             return '<span class="' + prefix + tag + '"><span class="' + prefix + 'box"></span><span class="' + prefix + 'item">' + exports.Trim(temp) + '</span></span>';
           }) + '</span>';
         }
