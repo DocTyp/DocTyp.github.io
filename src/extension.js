@@ -28,36 +28,46 @@
     'header4': {pattern: /\#{4,}/gm, regex: /\#{4,}.+/gm},
     'header3': {pattern: /\#{3}/gm, regex: /\#{3}.+/gm},
     'header2': {pattern: /\#{2}/gm, regex: /\#{2}.+/gm},
-    'header1': {pattern: /\#{1}/gm, regex: /\#{1}.+/gm}
+    'header1': {pattern: /\#/gm, regex: /\#.+/gm}
   };
   var style = {
     'bold': {pattern: /\*{2}/gm, regex: /\*{2}(.*?)\*{2}/gm},
-    'italic': {pattern: /\*{1}/gm, regex: /\*{1}(.*?)\*{1}/gm},
-    'underline': {pattern: /\.{2}/gm, regex: /\.{2}(?!\.)(.*?)\.{2}/gm},
-    'strike': {pattern: /\~{1,}/gm, regex: /\~{1,}(.*?)\~{1,}/gm},
-    'highlight': {pattern: /\={1,}/gm, regex: /\={1,}(?!\")(.*?)\={1,}/gm},
-    'superscript': {pattern: /\^{2}/gm, regex: /\^{2}(.*?)\^{2}/gm},
-    'subscript': {pattern: /\^{1}/gm, regex: /\^{1}(.*?)\^{1}/gm}
+    'italic': {pattern: /\*/gm, regex: /\*(.*?)\*/gm},
+    'underline': {pattern: /\_/gm, regex: /\_{2}(.*?)\_{2}/gm},
+    'strike': {pattern: /\~/gm, regex: /\~{2}(.*?)\~{2}/gm},
+    'highlight': {pattern: /\=/gm, regex: /\={2}(.*?)\={2}/gm},
+    'superscript': {pattern: /\+/gm, regex: /\+{2}(.*?)\+{2}/gm},
+    'subscript': {pattern: /\-/gm, regex: /\-{2}(.*?)\-{2}/gm}
   };
   var rule = {
     'rule-solid': {pattern: /[]/gm, regex: /^\-{4,}/gm},
-    'rule-dash': {pattern: /[]/gm, regex: /^\.{4,}/gm}
+    'rule-dash': {pattern: /[]/gm, regex: /^\.{4,}/gm},
+    'rule-dotted': {pattern: /[]/gm, regex: /^\.{4,}/gm}
   };
-  var block = {
-    'pre-extra': {pattern: /[]/gm, regex: /^\[(.*?)\|(.*?)\]\`{3,}([\s\S]*?)\`{3,}/gm},
-    'quote-extra': {pattern: /[]/gm, regex: /^\[(.*?)\]\`{2}([\s\S]*?)\`{2}/gm},
-    'pre': {pattern: /\`{3,}/gm, regex: /^\`{3,}([\s\S]*?)\`{3,}/gm},
-    'quote': {pattern: /\`{2}/gm, regex: /^\`{2}([\s\S]*?)\`{2}/gm},
-    'code': {pattern: /\`{1}/gm, regex: /\`{1}(.*?)\`{1}/gm}
+  var quote = {
+    'quote-code': {pattern: /\`/gm, regex: /\`(.*?)\`/gm},
+    'quote-extra': {pattern: /[]/gm, regex: /\[(.*?)\]\{\[([\s\S]*?)\]\}/gm},
+    'quote-plain': {pattern: /(\{\[|\]\})/gm, regex: /\{\[([\s\S]*?)\]\}/gm}
+  };
+  var code = {
+    'code-extra': {pattern: /[]/gm, regex: /\[(.*?)\]\{\(([\s\S]*?)\)\}/gm},
+    'code-plain': {pattern: /(\{\(|\)\})/gm, regex: /\{\(([\s\S]*?)\)\}/gm}
   };
   var list = {
-    'unordered': {pattern: /\-{1}/gm, regex: /(^\-{1}(?!\-{3,}).+\n){1,}/gm},
-    'ordered': {pattern: /\d{1,}\./gm, regex: /(^\d{1,}\..+\n){1,}/gm},
-    'checklist': {pattern: /[]/gm, regex: /(^\[[Xx\s]?\].+\n){1,}/gm}
+    'list-solid': {pattern: /(\-|\n)/gm, regex: /(^\-(?!\-{3,}).+\n){1,}/gm},
+    'list-empty': {pattern: /(\*|\n)/gm, regex: /(^\*(?!\*{3,}).+\n){1,}/gm},
+    'list-square': {pattern: /(\#|\n)/gm, regex: /(^\#(?!\#{3,}).+\n){1,}/gm},
+    'list-number': {pattern: /(\0\.|\n)/gm, regex: /(^\0\..+\n){1,}/gm},
+    'list-roman': {pattern: /(\1\.|\n)/gm, regex: /(^\1\..+\n){1,}/gm},
+    'list-letter': {pattern: /(\a\.|\n)/gm, regex: /(^\a\..+\n){1,}/gm},
+    'checklist': {pattern: /(\[[Xx\s]?\]|\n)/gm, regex: /(^\[[Xx\s]?\].+\n){1,}/gm}
+  };
+  var image = {
+    'image': {pattern: /[]/gm, regex: /\!\[(.*?)\]\((.*?)\)/gm}
   };
   var link = {
     'url-extra': {pattern: /[]/gm, regex: /\[(.*?)\]\((.*?)(https?|ftp|file)\:\/{2}(.*?)\)/gm},
-    'url': {pattern: /[]/gm, regex: /\b((https?|ftp|file)\:\/{2}([\w\d\.]+)([\/\?\&\w\d\=\,\.\+\:\;\@\$\%\#\!\_\-]+)?)\b/gm},
+    'url-plain': {pattern: /[]/gm, regex: /\b((https?|ftp|file)\:\/{2}([\w\d\.]+)([\/\?\&\w\d\=\,\.\+\:\;\@\$\%\#\!\_\-]+)?)\b/gm},
     'email': {pattern: /[]/gm, regex: /\b(([\w\d\.\_\%\+\-]+)\@([\w\d\.\-]+)(\.\w{2,}))\b/gm}
   };
   
@@ -104,37 +114,52 @@
   };
   
   /*============================================================
-  ============================Block=============================
+  ============================Quote=============================
   ============================================================*/
-  exports.Block = function(doc) {
-    for (key in block) {
-      doc = doc.replace(block[key].regex, function(match) {
-        if (key == 'pre-extra') {
-          var extra = exports.Prepare(match).split(']```'),
+  exports.Quote = function(doc) {
+    for (key in quote) {
+      doc = doc.replace(quote[key].regex, function(match) {
+        if (key == 'quote-code') {
+          var temp = exports.Prepare(match).replace(quote[key].pattern, ''),
+            classes = prefix + key + ' nohighlight language-none';
+          return '<code class="' + classes + '">' + exports.Trim(temp) + '</code>';
+        } else if (key == 'quote-extra') {
+          var extra = exports.Prepare(match).split(']{['),
+            credit = extra[0].split('[')[1],
+            quote = extra[1].split(']}')[0],
+            classes = prefix + key;
+          return '<div class="' + classes + '"><span class="' + prefix + 'quote">"' + exports.Trim(quote) + '"</span><br><span class="' + prefix + 'credit">' + exports.Trim(credit) + '</span></div>';
+        } else {
+          var temp = exports.Prepare(match).replace(quote[key].pattern, ''),
+            classes = prefix + key;
+          return '<div class="' + classes + '">"' + exports.Trim(temp) + '"</div>';
+        }
+      });
+    }
+    return doc;
+  };
+  
+  /*============================================================
+  ============================Code==============================
+  ============================================================*/
+  exports.Code = function(doc) {
+    for (key in code) {
+      doc = doc.replace(code[key].regex, function(match) {
+        if (key == 'code-extra') {
+          var extra = exports.Prepare(match).split(']{('),
             first = extra[0].split('[')[1].split('|'),
-            second = extra[1].split('```')[0],
+            second = extra[1].split(')}')[0],
             language = exports.Trim(first[0]).toLowerCase(),
             service = exports.Trim(first[1]).toLowerCase(),
-            classes = 'language-' + language + ' sh_' + language + ' prettyprint lang-' + language,
-            dataClasses = 'data-language="' + language + '"';
+            classes = prefix + key + ' language-' + language + ' sh_' + language + ' prettyprint lang-' + language,
+            dataClasses = language;
           exports.LoadScript('Syntax/' + service + '/script.js');
           exports.LoadStyle('Syntax/' + service + '/' + exports.theme + '.css');
-          return '<pre class="' + prefix + key + ' ' + classes + '" ' + dataClasses + '><code class="' + classes + '" ' + dataClasses + '>' + second + '</code></pre>';
-        } else if (key == 'quote-extra') {
-          var extra = exports.Prepare(match).split(']``'),
-            credit = extra[0].split('[')[1],
-            quote = extra[1].split('``')[0];
-          return '<div class="' + prefix + key + '"><span class="' + prefix + 'quote">"' + exports.Trim(quote) + '"</span><br><span class="' + prefix + 'credit">' + exports.Trim(credit) + '</span></div>';
+          return '<pre class="' + classes + '" data-language="' + dataClasses + '"><code class="' + classes + '" data-language="' + dataClasses + '">' + second + '</code></pre>';
         } else {
-          var temp = exports.Prepare(match).replace(block[key].pattern, ''),
+          var temp = exports.Prepare(match).replace(code[key].pattern, ''),
             classes = 'nohighlight language-none';
-          if (key == 'pre') {
-            return '<pre class="' + prefix + key + ' ' + classes + '"><code class="' + classes + '">' + temp + '</code></pre>';
-          } else if (key == 'quote') {
-            return '<div class="' + prefix + key + '">"' + exports.Trim(temp) + '"</div>';
-          } else {
-            return '<code class="' + prefix + key + ' ' + classes + '">' + exports.Trim(temp) + '</code>';
-          }
+          return '<pre class="' + prefix + key + ' ' + classes + '"><code class="' + classes + '">' + temp + '</code></pre>';
         }
       });
     }
