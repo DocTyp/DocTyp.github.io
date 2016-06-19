@@ -104,7 +104,7 @@ DocTyp.Docify('pre', 'Dark');
 - `[X] Checked`
 - `[ ] Unchecked`
 
-*Ordered Lists increment automatically. e.g. No need for 1., 2., 3., ...*
+*Ordered Lists increment automatically. e.g. No need for a., b., c., ...*
 
 ----
 
