@@ -6,7 +6,7 @@ See Examples: [Images]()
 
 
 ## Usage
-###### HTML
+**###### HTML**
 URL: `https://doctyp.github.io/src/DocTyp.js` **OR** `https://doctyp.github.io/src/DocTyp.min.js`
 
 ```html
