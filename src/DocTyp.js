@@ -48,7 +48,7 @@ var DocTyp = (function(exports) {
     doc = exports.Rule(doc);
     doc = exports.Block(doc);
     doc = exports.List(doc);
-    doc = exports.Clean(doc);
+    //doc = exports.Clean(doc);
     //Complete Process
     Complete(element, doc);
   }
@@ -66,7 +66,7 @@ var DocTyp = (function(exports) {
         doc = exports.Rule(doc);
         doc = exports.Block(doc);
         doc = exports.List(doc);
-        doc = exports.Clean(doc);
+        //doc = exports.Clean(doc);
         //Complete Process
         Complete(element, doc);
       }
