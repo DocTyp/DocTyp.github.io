@@ -32,7 +32,7 @@
   };
   var style = {
     'bold': {pattern: /\*{2}/gm, regex: /\*{2}(?!\*{2,})(.*?)\*{2}/gm},
-    'italic': {pattern: /\*/gm, regex: /\*(.*?)\*/gm},
+    'italic': {pattern: /\*/gm, regex: /\*(?!\*{3,})(.*?)\*/gm},
     'underline': {pattern: /\_/gm, regex: /\_{2}(?!\_{2,})(.*?)\_{2}/gm},
     'strike': {pattern: /\~/gm, regex: /\~{2}(?!\~{2,})(.*?)\~{2}/gm},
     'highlight': {pattern: /\=/gm, regex: /\={2}(?!\={2,})(.*?)\={2}/gm},
