@@ -128,7 +128,7 @@
           exports.LoadScript('Syntax/' + service + '/script.js');
           exports.LoadStyle('Syntax/' + service + '/' + exports.theme + '.css');
           exports.service = service;
-          return '<pre class="' + prefix + key + ' ' + classes + '" ' + dataClasses + '><code class="' + classes + '" ' + dataClasses + '>' + second + '</code></pre>';
+          return '<pre class="' + prefix + key + ' ' + classes + '" ' + dataClasses + '><code class="' + classes + '" ' + dataClasses + '>' + exports.Trim(second) + '</code></pre>';
         } else if (key == 'quote-extra') {
           var extra = exports.Prepare(match).split(']``'),
             credit = extra[0].split('[')[1],
