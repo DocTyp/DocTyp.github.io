@@ -98,6 +98,7 @@ var DocTyp = (function(exports) {
       Single(element, theme);
     } else {
       //Detecting if Tag-, Class- or ID Name
+      console.log(document.getElementsByTagName(element));
       var object = document.getElementsByTagName(element) ||
         document.getElementById(element) ||
         document.getElementsByClassName(element);
