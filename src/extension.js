@@ -214,24 +214,7 @@
   ============================Syntax============================
   ============================================================*/
   exports.Syntax = function(elements) {
-    switch (exports.service) {
-      case 'prism':
-        break;
-      case 'highlight':
-        hljs.initHighlighting();
-        break;
-      case 'shjs':
-        sh_highlightDocument();
-        break;
-      case 'rainbow':
-        Rainbow.color();
-        break;
-      case 'prettify':
-        prettyPrint();
-        break;
-      default:
-        break;
-    }
+    Syntax.Call();
     FixPre(elements);
   };
   
