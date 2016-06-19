@@ -30,9 +30,15 @@ var DocTyp = (function(exports) {
   /*============================================================
   ============================Private===========================
   ============================================================*/
+  function Complete(element, doc) {
+    //Create the article Tag
+    var article = document.createElement('article');
+    article.setAttribute('class', 'doctyp');
+    //Replace the old Element with new
+    element.parentNode.replaceChild(article, element);
+  }
+  
   function Single(element) {
-    //Adding class to element
-    element.setAttribute('class', 'doctyp');
     //Cater for older browsers
     var doc = element.innerText ? element.innerText : element.textContent;
     //Processing
@@ -42,8 +48,8 @@ var DocTyp = (function(exports) {
     doc = exports.Block(doc);
     doc = exports.List(doc);
     doc = exports.Clean(doc);
-    //Replace text with new text
-    element.innerHTML = doc;
+    //Complete Process
+    Complete(element, doc);
   }
   
   function Multiple(elements) {
@@ -51,8 +57,6 @@ var DocTyp = (function(exports) {
     if (elements.length > 0) {
       for (var a = 0; a < elements.length; a++) {
         var element = elements[a];
-        //Adding class to element
-        element.setAttribute('class', 'doctyp');
         //Cater for older browsers
         var doc = element.innerText ? element.innerText : element.textContent;
         //Processing
@@ -62,8 +66,8 @@ var DocTyp = (function(exports) {
         doc = exports.Block(doc);
         doc = exports.List(doc);
         doc = exports.Clean(doc);
-        //Replace text with new text
-        element.innerHTML = doc;
+        //Complete Process
+        Complete(element, doc);
       }
     } else {
       throw('The element is not defined or is not a DOM element.');
