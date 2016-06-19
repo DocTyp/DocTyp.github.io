@@ -15,6 +15,7 @@
   @param: 
     exports - Contains all the public variables and functions of the module.
     element - HTML DOM Element or Tag-, Class- or ID Name of a HTML DOM Element.
+    elements - An array of Elements
     theme - You can optionally set the style to Dark or Light.
     doc - The elements text that will be Docified.
   @credit: 
@@ -56,9 +57,9 @@ var DocTyp = (function(exports) {
     }
   }
   
-  function Multiple(element, theme) {
-    for (var a = 0; a < element.length; a++) {
-      console.log(element[a]);
+  function Multiple(elements, theme) {
+    for (var a = 0; a < elements.length; a++) {
+      var element = elements[a];
       //Check if element is an element
       if (element.nodeType && element.nodeType == 1) {
         //Adding class to element
