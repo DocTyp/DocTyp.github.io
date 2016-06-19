@@ -15,6 +15,7 @@
   @param: 
     exports - Contains all the public variables and functions of the module.
     doc - The elements text that will be Docified.
+    elements - An array of Elements.
   @credit: 
     Prism, Highlight, SHJS, Rainbow, Prettify
 */
@@ -63,6 +64,14 @@
   /*============================================================
   ============================Private===========================
   ============================================================*/
+  function FixPre(elements) {
+    for (var a = 0; a < elements.length; a++) {
+      var element = elements[a],
+        code = element.innerHTML,
+        fixed = code.replace(/\<br\>/gm, '\n');
+      element.innerHTML = fixed;
+    }
+  }
   
   /*============================================================
   ============================Header============================
@@ -196,14 +205,11 @@
   exports.Clean = function(doc) {
     return doc.replace(/\n/gm, '<br>');
   };
-  exports.RePre = function(doc) {
-    return doc.replace(/\<br\>/gm, '\n');
-  };
   
   /*============================================================
   ============================Syntax============================
   ============================================================*/
-  exports.Syntax = function() {
+  exports.Syntax = function(elements) {
     switch (exports.service) {
       case 'prism':
         break;
@@ -219,6 +225,7 @@
       default:
         break;
     }
+    FixPre(elements);
   };
   
   /*============================================================
