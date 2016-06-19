@@ -63,7 +63,7 @@
     'checklist': {pattern: /\[[Xx\s]?\]/gm, regex: /(^\[[Xx\s]?\].+\n){1,}/gm}
   };
   var link = {
-    'url': {pattern: /[]/gm, regex: /(\!?\[(.*?)\]\((.*?)(https?|ftp|file)\:\/{2}(.*?)\)|\b((https?|ftp|file)\:\/{2}([\w\d\.]+)([\/\?\&\w\d\=\,\.\+\:\;\@\$\%\#\!\_\-]+)?)\b)/gm},
+    'url': {pattern: /[]/gm, regex: /(\!\[(.*?)\]\((.*?)\)|\[(.*?)\]\((.*?)(https?|ftp|file)\:\/{2}(.*?)\)|\b((https?|ftp|file)\:\/{2}([\w\d\.]+)([\/\?\&\w\d\=\,\.\+\:\;\@\$\%\#\!\_\-]+)?)\b)/gm},
     'email': {pattern: /[]/gm, regex: /\b(([\w\d\.\_\%\+\-]+)\@([\w\d\.\-]+)(\.\w{2,}))\b/gm}
   };
   var image = {
@@ -222,6 +222,7 @@
   exports.Image = function(doc) {
     for (key in image) {
       doc = doc.replace(image[key].regex, function(match) {
+        console.log(match);
         var extra = exports.Prepare(match).split(']('),
           alt = exports.Trim(extra[0].split('![')[1]).toLowerCase(),
           url = exports.Trim(extra[1].split(')')[0]).toLowerCase();
