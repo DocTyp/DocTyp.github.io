@@ -72,6 +72,9 @@
       element.innerHTML = fixed;
     }
   }
+  function FixNewLine(doc) {
+    return doc.replace(/\<br\>/gm, '');
+  }
   
   /*============================================================
   ============================Header============================
@@ -156,6 +159,7 @@
   exports.List = function(doc) {
     for (key in list) {
       doc = doc.replace(list[key].regex, function(match) {
+        match = FixNewLine(match);
         if (key == 'unordered' || key == 'ordered') {
           var tag = key == 'unordered' ? 'ul' : 'ol';
           return '<' + tag + ' class="' + prefix + key + '">' + match.replace(/.+/gm, function(line) {
@@ -165,7 +169,7 @@
         } else {
           return '<span class="' + prefix + key + '">' + match.replace(/.+/gm, function(line) {
             var temp = exports.Prepare(line).replace(/\[[Xx]?\]/gm, ''),
-              tag = (new RegExp('\[\]', 'gm')).test(line) ? 'unchecked' : 'checked' ;
+              tag = (new RegExp(/\[\]/gm)).test(line) ? 'unchecked' : 'checked';
             return '<span class="' + prefix + tag + '"><span class="' + prefix + 'box"></span><span class="' + prefix + 'item">' + exports.Trim(temp) + '</span></span>';
           }) + '</span>';
         }
@@ -204,14 +208,6 @@
   };
   exports.Clean = function(doc) {
     return doc.replace(/\n/gm, '<br>');
-  };
-  exports.FixNewLine = function(elements) {
-    for (var a = 0; a < elements.length; a++) {
-      var element = elements[a],
-        content = element.innerHTML,
-        fixed = content.replace(/\<br\>/gm, '');
-      element.innerHTML = fixed;
-    }
   };
   
   /*============================================================
