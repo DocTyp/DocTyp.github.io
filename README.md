@@ -137,7 +137,6 @@ alert(msg);
 ###### JavaScript
 ```javascript
 //External Syntax Highlighting will be adjusted to the selected DocTyp Theme
-//All pre Tags with Dark theme
 //document.getElementsByTagName('pre')[0] for selected index
 var element = document.getElementsByTagName('pre');
 DocTyp.Docify(element, 'Dark');
