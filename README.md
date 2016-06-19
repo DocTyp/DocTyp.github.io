@@ -27,7 +27,7 @@ See Examples: [Images]()
 
 ###### JavaScript
 
-** Parameters **
+**Parameters**
 
 `element`: You could specify the element by its Tag Name, Class, ID or by fetching it with JavaScript.
 
