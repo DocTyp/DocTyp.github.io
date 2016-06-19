@@ -63,7 +63,7 @@
     'checklist': {pattern: /(\[[Xx\s]?\]|\n)/gm, regex: /(^\[[Xx\s]?\].+\n){1,}/gm}
   };
   var link = {
-    'url': {pattern: /[]/gm, regex: /(\[(.*?)\]\((.*?)(https?|ftp|file)\:\/{2}(.*?)\)|\b((https?|ftp|file)\:\/{2}([\w\d\.]+)([\/\?\&\w\d\=\,\.\+\:\;\@\$\%\#\!\_\-]+)?)\b)/gm},
+    'url': {pattern: /[]/gm, regex: /(\!?\[(.*?)\]\((.*?)(https?|ftp|file)\:\/{2}(.*?)\)|\b((https?|ftp|file)\:\/{2}([\w\d\.]+)([\/\?\&\w\d\=\,\.\+\:\;\@\$\%\#\!\_\-]+)?)\b)/gm},
     'email': {pattern: /[]/gm, regex: /\b(([\w\d\.\_\%\+\-]+)\@([\w\d\.\-]+)(\.\w{2,}))\b/gm}
   };
   var image = {
@@ -200,16 +200,16 @@
     for (key in link) {
       doc = doc.replace(link[key].regex, function(match) {
         if (key == 'url') {
-          if ((new RegExp(/\[(.*?)\]\((.*?)(https?|ftp|file)\:\/{2}(.*?)\)/gm)).test(match)) {
+          if ((new RegExp(/^\[(.*?)\]\((.*?)(https?|ftp|file)\:\/{2}(.*?)\)$/gm)).test(match)) {
             var extra = exports.Prepare(match).split(']('),
               title = extra[0].split('[')[1],
               url = extra[1].split(']')[0];
             return '<a class="' + prefix + key + '" href="' + exports.Trim(url) + '" target="_blank">' + exports.Trim(title) + '</a>';
-          } else {
+          } else if ((new RegExp(/^\b((https?|ftp|file)\:\/{2}([\w\d\.]+)([\/\?\&\w\d\=\,\.\+\:\;\@\$\%\#\!\_\-]+)?)\b$/gm)).test(match)) {
             return '<a class="' + prefix + key + '" href="' + exports.Trim(match) + '" target="_blank">' + exports.Trim(match) + '</a>';
           }
         } else {
-          return '<a class="' + prefix + key + '" href="' + exports.Trim(match) + '" target="_blank">' + exports.Trim(match) + '</a>';
+          return '<a class="' + prefix + key + '" href="mailto:' + exports.Trim(match) + '" target="_blank">' + exports.Trim(match) + '</a>';
         }
       });
     }
@@ -222,8 +222,8 @@
   exports.Image = function(doc) {
     for (key in image) {
       doc = doc.replace(image[key].regex, function(match) {
-        var extra = exports.Prepare(match).split(']!('),
-          alt = exports.Trim(extra[0].split('[')[1]).toLowerCase(),
+        var extra = exports.Prepare(match).split(']('),
+          alt = exports.Trim(extra[0].split('![')[1]).toLowerCase(),
           url = exports.Trim(extra[1].split(')')[0]).toLowerCase();
         return '<img class="' + prefix + key + '" src="' + url + '" alt="' + alt + '"></img>';
       });
