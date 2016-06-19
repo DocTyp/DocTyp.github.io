@@ -202,7 +202,7 @@
       doc = doc.replace(image[key].regex, function(match) {
         var extra = exports.Prepare(match).split(']('),
           alt = exports.Trim(extra[0].split('![')[1]).toLowerCase(),
-          path = exports.Trim(extra[1].split(')')[0]).toLowerCase();
+          url = exports.Trim(extra[1].split(')')[0]).toLowerCase();
         return '<img class="' + prefix + key + '" href="' + url + '" alt="' + alt + '"></img>';
       });
     }
