@@ -67,10 +67,10 @@ DocTyp.Docify('pre', 'Dark');
 
 ###### Blocks
 - `` ` Quoting Code ` ``
-- `` ` ` Quoting Text ` ` ``
-- `` ` ` ` Preformatted Code ` ` ` ``
-- ``[Credit]` ` Quoting Text with Credit ` ` ``
-- `` [Language|Service]` ` ` Preformatted Code using External Services ` ` ` ``
+- ``` `` Quoting Text `` ```
+- `` ``` Preformatted Code ``` ``
+- `[Credit]`` Quoting Text with Credit `` `
+- `` [Language|Service]``` Preformatted Code using External Services ``` ``
   - [Highlight](https://highlightjs.org)
   - [Prettify](https://github.com/google/code-prettify)
   - [Prism](http://prismjs.com)
@@ -100,10 +100,9 @@ DocTyp.Docify('pre', 'Dark');
 <pre class="doctyp" id="doctyp">
 # Hello World!
 
-[JavaScript|Prism]` ` `
+[JavaScript|Prism]```
 var msg = 'Hello World!';
-alert(msg);
-` ` `
+alert(msg);```
 </pre>
 ```
 
