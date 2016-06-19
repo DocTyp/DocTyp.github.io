@@ -7,7 +7,7 @@ See Examples: [Images]()
 
 ## Usage
 ###### HTML
-`https://doctyp.github.io/src/DocTyp.js` **OR** `https://doctyp.github.io/src/DocTyp.min.js`
+URL: `https://doctyp.github.io/src/DocTyp.js` **OR** `https://doctyp.github.io/src/DocTyp.min.js`
 
 ```html
 <head>
@@ -103,6 +103,7 @@ DocTyp.Docify('pre', 'Dark');
 - `a. Ordered`: Letter
 - `[X] Checked`
 - `[ ] Unchecked`
+
 *Ordered Lists increment automatically. e.g. No need for 1., 2., 3., ...*
 
 ----
