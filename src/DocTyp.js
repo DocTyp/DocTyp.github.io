@@ -34,6 +34,7 @@ var DocTyp = (function(exports) {
     //Create the article Tag
     var article = document.createElement('article');
     article.setAttribute('class', 'doctyp');
+    article.innerHTML = doc;
     //Replace the old Element with new
     element.parentNode.replaceChild(article, element);
   }
