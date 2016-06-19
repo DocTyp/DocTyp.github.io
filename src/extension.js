@@ -44,7 +44,7 @@
     'rule-dash': {pattern: /[]/gm, regex: /\-{4,}/gm},
     'rule-dotted': {pattern: /[]/gm, regex: /\.{4,}/gm},
     'rule-double': {pattern: /[]/gm, regex: /\={4,}/gm},
-    'rule-thick': {pattern: /[]/gm, regex: /\*{4,}/gm}
+    'rule-thick': {pattern: /[]/gm, regex: /\+{4,}/gm}
   };
   var quote = {
     'quote-code': {pattern: /\`/gm, regex: /\`(.*?)\`/gm},
