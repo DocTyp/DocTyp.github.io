@@ -53,7 +53,7 @@
   var list = {
     'unordered': {pattern: /\-{1}/gm, regex: /(^\-{1}(?!\-{3,}).+\n){1,}/gm},
     'ordered': {pattern: /\d{1,}\./gm, regex: /(^\d{1,}\..+\n){1,}/gm},
-    'checklist': {pattern: /[]/gm, regex: /(^\[[Xx]?\].+\n){1,}/gm}
+    'checklist': {pattern: /[]/gm, regex: /(^\[[Xx\s]?\].+\n){1,}/gm}
   };
   var link = {
     'url-extra': {pattern: /[]/gm, regex: /\[(.*?)\]\((.*?)(https?|ftp|file)\:\/{2}(.*?)\)/gm},
@@ -155,8 +155,8 @@
           }) + '</' + tag + '>';
         } else {
           return '<span class="' + prefix + key + '">' + match.replace(/.+/gm, function(line) {
-            var temp = exports.Prepare(line).replace(/\[[Xx]?\]/gm, ''),
-              tag = (new RegExp(/\[\]/gm)).test(line) ? 'unchecked' : 'checked';
+            var temp = exports.Prepare(line).replace(/\[[Xx\s]?\]/gm, ''),
+              tag = (new RegExp(/\[\s?\]/gm)).test(line) ? 'unchecked' : 'checked';
             return '<span class="' + prefix + tag + '"><span class="' + prefix + 'box"></span><span class="' + prefix + 'item">' + exports.Trim(temp) + '</span></span>';
           }) + '</span>';
         }
