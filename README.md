@@ -6,7 +6,6 @@ See Examples: [Images]()
 
 
 ## Usage
-
 ###### HTML
 `https://doctyp.github.io/src/DocTyp.js` **OR** `https://doctyp.github.io/src/DocTyp.min.js`
 
@@ -25,26 +24,23 @@ See Examples: [Images]()
 </body>
 ```
 
-###### **JavaScript**
-
+###### JavaScript
 **Parameters**
-
-`element`: You could specify the element by its Tag Name, Class, ID or by fetching it with JavaScript.
-
-`theme`: The theme is optional, Dark, Light or leave it blank for a custom theme.
-
+- `element`: You could specify the element by its Tag Name, Class, ID or by fetching it with JavaScript.
+- `theme`: The theme is optional, Dark, Light or leave it blank for a custom theme.
 ```javascript
 DocTyp.Docify('pre', 'Dark');
 ```
 
 
 ## Syntax
-
 ###### Headers
 - `# Header 1`
 - `## Header 2`
 - `### Header 3`
 - `#### Header 4`
+
+----
 
 ###### Styling Text
 - `** Bold **`
@@ -55,10 +51,14 @@ DocTyp.Docify('pre', 'Dark');
 - `Word+ Superscript +`
 - `Word- Subscript -`
 
+----
+
 ###### Horizontal Ruling
 - `____`: Solid
 - `----`: Dash
 - `....`: Dotted
+
+----
 
 ###### Quoting Blocks
 **Quoting Code**
@@ -73,6 +73,8 @@ DocTyp.Docify('pre', 'Dark');
 ```
 [Credit]{[ Quoting Text ]}
 ```
+
+----
 
 ###### Coding Blocks
 **Preformatted Code**
@@ -90,6 +92,8 @@ DocTyp.Docify('pre', 'Dark');
 - [Rainbow](https://craig.is/making/rainbows)
 - [SHJS](http://shjs.sourceforge.net)
 
+----
+
 ###### Lists
 - `- Unordered`: Solid Circle
 - `* Unordered`: Empty Circle
@@ -101,10 +105,14 @@ DocTyp.Docify('pre', 'Dark');
 - `[ ] Unchecked`
 *Ordered Lists increment automatically. e.g. No need for 1., 2., 3., ...*
 
+----
+
 ###### Images
 ```
 ![ Alt Text ]( Path to Image )
 ```
+
+----
 
 ###### Links
 - `doctypgithub@gmail.com`
@@ -113,7 +121,6 @@ DocTyp.Docify('pre', 'Dark');
 
 
 ## Example
-
 ###### Preformatted Code
 ```html
 <pre class="doctyp" id="doctyp">
