@@ -40,9 +40,6 @@ var DocTyp = (function(exports) {
     if (article.querySelectorAll('pre').length > 0) {
       exports.Syntax(article.querySelectorAll('pre'));
     }
-    if (article.querySelectorAll('ul ol').length > 0) {
-      exports.FixNewLine(article.querySelectorAll('ul ol'));
-    }
   }
   
   function Single(element) {
