@@ -110,7 +110,7 @@
             second = extra[1].split('```')[0],
             language = exports.Trim(first[0]).toLowerCase(),
             service = exports.Trim(first[1]).toLowerCase(),
-            classes = 'language-' + language + ' sh_' + language + ' prittyprint lang-' + language,
+            classes = 'language-' + language + ' sh_' + language + ' prettyprint lang-' + language,
             dataClasses = 'data-language="' + language + '"';
           exports.LoadScript('Syntax/' + service + '/script.js');
           exports.LoadStyle('Syntax/' + service + '/' + exports.theme + '.css');
