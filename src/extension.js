@@ -121,6 +121,8 @@
       doc = doc.replace(quote[key].regex, function(match) {
         if (key == 'quote-code') {
           console.log(key);
+          console.log(quote[key]);
+          console.log(quote[key].pattern);
           var temp = exports.Prepare(match).replace(quote[key].pattern, ''),
             classes = prefix + key + ' nohighlight language-none';
           return '<code class="' + classes + '">' + exports.Trim(temp) + '</code>';
