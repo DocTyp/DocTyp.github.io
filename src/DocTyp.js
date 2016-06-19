@@ -29,26 +29,29 @@ var DocTyp = (function(exports) {
   /*============================================================
   ============================Private===========================
   ============================================================*/
+  function Single(element, theme) {
+    //Adding class to element
+    element.setAttribute('class', 'doctyp');
+    //Cater for older browsers
+    var doc = element.innerText ? element.innerText : element.textContent;
+    //Processing
+    doc = exports.Header(doc);
+    doc = exports.Style(doc);
+    doc = exports.Rule(doc);
+    doc = exports.Block(doc);
+    doc = exports.List(doc);
+    doc = exports.Clean(doc);
+    //Replace text with new text
+    element.innerHTML = doc;
+  }
   
-  /*============================================================
-  ============================Public============================
-  ============================================================*/
-  exports.Docify = function(query, theme) {
-    //Get Elements
-    var elements = document.querySelectorAll(query);
+  function Multiple(elements, theme) {
     //Check if any elements were found
     if (elements.length > 0) {
       for (var a = 0; a < elements.length; a++) {
         var element = elements[a];
         //Adding class to element
         element.setAttribute('class', 'doctyp');
-        //Check if user is using their own style
-        if (theme !== undefined) {
-          exports.theme = theme.toLowerCase();
-          exports.LoadStyle('Style/' + theme.toLowerCase() + '.css');
-        } else {
-          exports.theme = 'light';
-        }
         //Cater for older browsers
         var doc = element.innerText ? element.innerText : element.textContent;
         //Processing
@@ -62,7 +65,28 @@ var DocTyp = (function(exports) {
         element.innerHTML = doc;
       }
     } else {
-      throw('Could not find the Element you were looking for.');
+      throw('The element is not defined or is not a DOM element.');
+    }
+  }
+  
+  /*============================================================
+  ============================Public============================
+  ============================================================*/
+  exports.Docify = function(query, theme) {
+    //Check if user is using their own style
+    if (theme !== undefined) {
+      exports.theme = theme.toLowerCase();
+      exports.LoadStyle('Style/' + theme.toLowerCase() + '.css');
+    } else {
+      exports.theme = 'light';
+    }
+    //Check if there are multiple elements
+    if (query.nodeType && query.nodeType == 1) {
+      Single(query);
+    } else {
+      //Get Elements
+      var elements = document.querySelectorAll(query);
+      Multiple(elements);
     }
   };
   
