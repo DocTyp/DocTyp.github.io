@@ -222,7 +222,7 @@
         var extra = exports.Prepare(match).split(']!('),
           alt = exports.Trim(extra[0].split('[')[1]).toLowerCase(),
           url = exports.Trim(extra[1].split(')')[0]).toLowerCase();
-        return '<img class="' + prefix + key + '" href="' + url + '" alt="' + alt + '"></img>';
+        return '<img class="' + prefix + key + '" src="' + url + '" alt="' + alt + '"></img>';
       });
     }
     return doc;
