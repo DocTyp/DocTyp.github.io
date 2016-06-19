@@ -57,7 +57,7 @@ var DocTyp = (function(exports) {
   }
   
   function Multiple(elements, theme) {
-    for (element in elements) {
+    for (element in elements.nodeList) {
       console.log(element);
       //Check if element is an element
       if (element.nodeType && element.nodeType == 1) {
