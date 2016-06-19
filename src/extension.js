@@ -40,7 +40,7 @@
     'subscript': {pattern: /\-/gm, regex: /\-{2}(.*?)\-{2}/gm}
   };
   var rule = {
-    'rule-solid': {pattern: /[]/gm, regex: /\_{4,}/gm},
+    'rule-solid': {pattern: /[]/gm, regex: /\={4,}/gm},
     'rule-dash': {pattern: /[]/gm, regex: /\-{4,}/gm},
     'rule-dotted': {pattern: /[]/gm, regex: /\.{4,}/gm}
   };
