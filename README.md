@@ -68,7 +68,7 @@ DocTyp.Docify('pre', 'Dark');
 ###### Blocks
 - ``` \` Quoting Code \` ```
 - ``` \`\` Quoting Text \`\` ```
-- ``` \`\`\` Preformatted Code \`\`\` ```
+``` ``` Preformatted Code ``` ```
 - ``` [Credit]\`\` Quoting Text with Credit \`\` ```
 - ``` [Language|Service]\`\`\` Preformatted Code using External Services \`\`\` ```
   - [Highlight](https://highlightjs.org)
