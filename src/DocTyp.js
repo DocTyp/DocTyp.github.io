@@ -43,12 +43,12 @@ var DocTyp = (function(exports) {
     //Cater for older browsers
     var doc = element.innerHTML;
     //Processing
-    doc = exports.Clean(doc);
     doc = exports.Header(doc);
     doc = exports.Style(doc);
     doc = exports.Rule(doc);
     doc = exports.Block(doc);
     doc = exports.List(doc);
+    doc = exports.Clean(doc);
     //Complete Process
     Complete(element, doc);
   }
@@ -61,12 +61,12 @@ var DocTyp = (function(exports) {
         //Cater for older browsers
         var doc = element.innerHTML;
         //Processing
-        doc = exports.Clean(doc);
         doc = exports.Header(doc);
         doc = exports.Style(doc);
         doc = exports.Rule(doc);
         doc = exports.Block(doc);
         doc = exports.List(doc);
+        doc = exports.Clean(doc);
         //Complete Process
         Complete(element, doc);
       }
