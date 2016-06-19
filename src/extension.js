@@ -118,6 +118,7 @@
             dataClasses = 'data-language="' + language + '"';
           exports.LoadScript('Syntax/' + service + '/script.js');
           exports.LoadStyle('Syntax/' + service + '/' + exports.theme + '.css');
+          exports.service = service;
           return '<pre class="' + prefix + key + ' ' + classes + '" ' + dataClasses + '><code class="' + classes + '" ' + dataClasses + '>' + second + '</code></pre>';
         } else if (key == 'quote-extra') {
           var extra = exports.Prepare(match).split(']``'),
@@ -197,6 +198,27 @@
   };
   exports.RePre = function(doc) {
     return doc.replace(/\<br\>/gm, '\n');
+  };
+  
+  /*============================================================
+  ============================Syntax============================
+  ============================================================*/
+  exports.Syntax = function() {
+    switch (exports.service) {
+      case 'prism':
+        break;
+      case 'highlight':
+        break;
+      case 'shjs':
+        break;
+      case 'rainbow':
+        break;
+      case 'prettify':
+        prettyPrint();
+        break;
+      default:
+        break;
+    }
   };
   
   /*============================================================
