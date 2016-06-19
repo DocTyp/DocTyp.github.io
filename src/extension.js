@@ -56,11 +56,11 @@
   var list = {
     'list-solid': {pattern: /(\-|\n)/gm, regex: /(^\-(?!\-{3,}).+\n){1,}/gm},
     'list-empty': {pattern: /(\*|\n)/gm, regex: /(^\*(?!\*{3,}).+\n){1,}/gm},
-    'list-square': {pattern: /(\#|\n)/gm, regex: /(^\#(?!\#{3,}).+\n){1,}/gm},
-    'list-number': {pattern: /(\0\.|\n)/gm, regex: /(^\0\..+\n){1,}/gm},
-    'list-roman': {pattern: /(\1\.|\n)/gm, regex: /(^\1\..+\n){1,}/gm},
-    'list-letter': {pattern: /(\a\.|\n)/gm, regex: /(^\a\..+\n){1,}/gm},
-    'checklist': {pattern: /(\[[Xx\s]?\]|\n)/gm, regex: /(^\[[Xx\s]?\].+\n){1,}/gm}
+    'list-square': {pattern: /(\@|\n)/gm, regex: /(^\@(?!\@{3,}).+\n){1,}/gm},
+    'list-number': {pattern: /(\o\.|\n)/gm, regex: /(^\o\..+\n){1,}/igm},
+    'list-roman': {pattern: /(\i\.|\n)/gm, regex: /(^\i\..+\n){1,}/igm},
+    'list-letter': {pattern: /(\a\.|\n)/gm, regex: /(^\a\..+\n){1,}/igm},
+    'checklist': {pattern: /\[[Xx\s]?\]/gm, regex: /(^\[[Xx\s]?\].+\n){1,}/gm}
   };
   var link = {
     'url': {pattern: /[]/gm, regex: /(\!?\[(.*?)\]\((.*?)(https?|ftp|file)\:\/{2}(.*?)\)|\b((https?|ftp|file)\:\/{2}([\w\d\.]+)([\/\?\&\w\d\=\,\.\+\:\;\@\$\%\#\!\_\-]+)?)\b)/gm},
