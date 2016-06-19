@@ -172,19 +172,38 @@
   exports.List = function(doc) {
     for (key in list) {
       doc = doc.replace(list[key].regex, function(match) {
-        if (key == 'unordered' || key == 'ordered') {
-          var tag = key == 'unordered' ? 'ul' : 'ol';
-          return '<' + tag + ' class="' + prefix + key + '">' + match.replace(/.+/gm, function(line) {
+        if (key == 'list-solid' || key == 'list-empty' || key == 'list-square') {
+          return '<ul class="' + prefix + key + '">' + match.replace(/.+\n/gm, function(line) {
             var temp = exports.Prepare(line).replace(list[key].pattern, '');
             return '<li>' + exports.Trim(temp) + '</li>';
-          }) + '</' + tag + '>';
+          }) + '</ul>';
+        } else if (key == 'list-number' || key == 'list-roman' || key == 'list-letter') {
+          return '<ol class="' + prefix + key + '">' + match.replace(/.+\n/gm, function(line) {
+            var temp = exports.Prepare(line).replace(list[key].pattern, '');
+            return '<li>' + exports.Trim(temp) + '</li>';
+          }) + '</ol>';
         } else {
-          return '<span class="' + prefix + key + '">' + match.replace(/.+/gm, function(line) {
+          return '<span class="' + prefix + key + '">' + match.replace(/.+\n/gm, function(line) {
             var temp = exports.Prepare(line).replace(/\[[Xx\s]?\]/gm, ''),
               tag = (new RegExp(/\[\s?\]/gm)).test(line) ? 'unchecked' : 'checked';
-            return '<span class="' + prefix + tag + '"><span class="' + prefix + 'box"></span><span class="' + prefix + 'item">' + exports.Trim(temp) + '</span></span>';
+            return '<span class="' + prefix + 'box"></span><span class="' + prefix + 'item">' + exports.Trim(temp) + '</span>';
           }) + '</span>';
         }
+      });
+    }
+    return doc;
+  };
+  
+  /*============================================================
+  ============================Image=============================
+  ============================================================*/
+  exports.Image = function(doc) {
+    for (key in image) {
+      doc = doc.replace(image[key].regex, function(match) {
+        var extra = exports.Prepare(match).split(']('),
+          alt = exports.Trim(extra[0].split('![')[1]).toLowerCase(),
+          path = exports.Trim(extra[1].split(')')[0]).toLowerCase();
+        return '<img class="' + prefix + key + '" href="' + url + '" alt="' + alt + '"></img>';
       });
     }
     return doc;
