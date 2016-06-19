@@ -1,8 +1,8 @@
 # DocTyp
 
+Create beautiful styled markdown documents that contain many features and useful functions. It is easy to learn and doesn't require hours of focus. Setting up a simple markdown document should only take a couple of minutes.
 
-
-See Examples: [Images]()
+See Examples: [DocTyp](https://doctyp.github.io)
 
 
 ## Usage
