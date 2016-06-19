@@ -58,7 +58,7 @@ DocTyp.Docify('pre', 'Dark');
 - `----`: Dash
 - `....`: Dotted
 - `====`: Double
-- `****`: Thick
+- `++++`: Thick
 
 ----
 
