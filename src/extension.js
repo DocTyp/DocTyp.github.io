@@ -117,7 +117,7 @@
   ============================Quote=============================
   ============================================================*/
   exports.Quote = function(doc) {
-    for (var key in quote) {
+    for (key in quote) {
       doc = doc.replace(quote[key].regex, function(match) {
         if (key == 'quote-code') {
           var temp = exports.Prepare(match).replace(quote[key].pattern, ''),
@@ -126,9 +126,9 @@
         } else if (key == 'quote-extra') {
           var extra = exports.Prepare(match).split(']{['),
             credit = extra[0].split('[')[1],
-            quote = extra[1].split(']}')[0],
+            content = extra[1].split(']}')[0],
             classes = prefix + key;
-          return '<div class="' + classes + '"><span class="' + prefix + 'quote">"' + exports.Trim(quote) + '"</span><br><span class="' + prefix + 'credit">' + exports.Trim(credit) + '</span></div>';
+          return '<div class="' + classes + '"><span class="' + prefix + 'quote">"' + exports.Trim(content) + '"</span><br><span class="' + prefix + 'credit">' + exports.Trim(credit) + '</span></div>';
         } else {
           var temp = exports.Prepare(match).replace(quote[key].pattern, ''),
             classes = prefix + key;
