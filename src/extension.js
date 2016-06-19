@@ -111,7 +111,7 @@
             language = exports.Trim(first[0]).toLowerCase(),
             service = exports.Trim(first[1]).toLowerCase(),
             classes = 'language-' + language + ' sh_' + language + ' prittyprint lang-' + language,
-            data = 'data-language="' + language + '"';
+            dataClasses = 'data-language="' + language + '"';
           exports.LoadScript(service + '/script.js');
           exports.LoadStyle(service + '/' + exports.theme + '.css');
           return '<pre class="' + prefix + key + ' ' + classes + '" ' + dataClasses + '><code class="' + classes + '" ' + dataClasses + '>' + exports.Trim(second) + '</code></pre>';
