@@ -154,12 +154,12 @@
   =============================List=============================
   ============================================================*/
   exports.List = function(doc) {
-    for (key in style) {
-      doc = doc.replace(style[key].regex, function(match) {
+    for (key in list) {
+      doc = doc.replace(list[key].regex, function(match) {
         if (key == 'unordered' || key == 'ordered') {
           var tag = key == 'unordered' ? 'ul' : 'ol';
           return '<' + tag + ' class="' + prefix + key + '">' + match.replace(/.+/gm, function(line) {
-            var temp = exports.Prepare(line).replace(style[key].pattern, '');
+            var temp = exports.Prepare(line).replace(list[key].pattern, '');
             return '<li>' + exports.Trim(temp) + '</li>';
           }) + '</' + tag + '>';
         } else {
