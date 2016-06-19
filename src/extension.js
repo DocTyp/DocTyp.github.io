@@ -45,7 +45,7 @@
     'rule-dotted': {pattern: /[]/gm, regex: /^\.{4,}/gm}
   };
   var quote = {
-    //'quote-code': {pattern: /\`{1}/gm, regex: /\`(.*?)\`/gm},
+    //'quote-code': {pattern: /\`/gm, regex: /\`(.*?)\`/gm},
     'quote-extra': {pattern: /[]/gm, regex: /\[(.*?)\]\{\[([\s\S]*?)\]\}/gm},
     'quote-plain': {pattern: /(\{\[|\]\})/gm, regex: /\{\[([\s\S]*?)\]\}/gm}
   };
