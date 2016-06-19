@@ -14,7 +14,7 @@
   @author: Alexander Hovy
   @param: 
     exports - Contains all the public variables and functions of the module.
-    element - The HTML DOM element that will be Docified.
+    element - HTML DOM Element or Tag-, Class- or ID Name of a HTML DOM Element.
     theme - You can optionally set the style to Dark or Light.
     doc - The elements text that will be Docified.
   @credit: 
@@ -90,11 +90,20 @@ var DocTyp = (function(exports) {
   ============================Public============================
   ============================================================*/
   exports.Docify = function(element, theme) {
-    //Check if more than one element
-    if (!element.length) {
+    //Check if element is an element
+    if (element.nodeType && element.nodeType == 1) {
       Single(element, theme);
     } else {
-      Multiple(element, theme);
+      //Detecting if Tag-, Class- or ID Name
+      element = document.getElementsByTagName(element) ||
+        document.getElementById(element) ||
+        document.getElementsByClassName(element);
+      //Check if more than one element
+      if (!element.length) {
+        Single(element, theme);
+      } else {
+        Multiple(element, theme);
+      }
     }
   };
   
