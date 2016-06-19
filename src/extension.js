@@ -200,7 +200,7 @@
   exports.Link = function(doc) {
     for (key in link) {
       doc = doc.replace(link[key].regex, function(match) {
-        if (key == 'url-plain') {
+        if (key == 'url-plain' || key == 'email') {
           return '<a class="' + prefix + key + '" href="' + exports.Trim(match) + '" target="_blank">' + exports.Trim(match) + '</a>';
         } else {
           var extra = exports.Prepare(match).split(']('),
