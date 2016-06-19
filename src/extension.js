@@ -34,7 +34,7 @@
     'italic': {pattern: /\//gm, regex: /\/{1,}(.*?)\/{1,}/gm},
     'underline': {pattern: /\_/gm, regex: /\_{1,}(.*?)\_{1,}/gm},
     'strike': {pattern: /\~/gm, regex: /\~{1,}(.*?)\~{1,}/gm},
-    'highlight': {pattern: /\=/gm, regex: /\={1,}(.*?)\={1,}/gm}
+    'highlight': {pattern: /\=/gm, regex: /\={1,}(?!\")(.*?)\={1,}/gm}
   };
   var rule = {
     'rule-solid': {pattern: /\-/gm, regex: /\-{4,}/gm},
@@ -47,8 +47,8 @@
     'quote': {pattern: /[\{\}]/gm, regex: /\{{1,}([\s\S]*?)\}{1,}/gm}
   };
   var list = {
-    //'unordered': {pattern: /\-/gm, regex: /((.*?)\-(?!(.*?)\-).+$\n){1,}/gm},
-    //'ordered': {pattern: /\d{1,}\./gm, regex: /((.*?)\d{1,}\..+$\n){1,}/gm}
+    'unordered': {pattern: /\-/gm, regex: /((.*?)\-(?!(.*?)\-).+$\n){1,}/gm},
+    'ordered': {pattern: /\d{1,}\./gm, regex: /((.*?)\d{1,}\..+$\n){1,}/gm}
   };
   var link = {
     'header1': {pattern: /\#/gm, regex: /^\#{1}(?!\#)(.*?)$/gm},
