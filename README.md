@@ -29,5 +29,13 @@
 ----
 
 ###### Blocks
-- \`` Quoting Code `\`
-- ``
+- `\` Quoting Code \``
+- `\`\` Quoting Text \`\``
+- `\`\`\` Preformatted Code \`\`\``
+- `[Credit]\`\` Quoting Text with Credit \`\``
+- `[Language|Service]\`\`\` Preformatted Code using External Services \`\`\``
+  - [Highlight](https://highlightjs.org)
+  - [Prettify](https://github.com/google/code-prettify)
+  - [Prism](http://prismjs.com)
+  - [Rainbow](https://craig.is/making/rainbows)
+  - [SHJS](http://shjs.sourceforge.net)
