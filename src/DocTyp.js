@@ -41,7 +41,7 @@ var DocTyp = (function(exports) {
   
   function Single(element) {
     //Cater for older browsers
-    var doc = element.innerText ? element.innerText : element.textContent;
+    var doc = element.innerHTML;
     //Processing
     doc = exports.Header(doc);
     doc = exports.Style(doc);
@@ -59,7 +59,7 @@ var DocTyp = (function(exports) {
       for (var a = 0; a < elements.length; a++) {
         var element = elements[a];
         //Cater for older browsers
-        var doc = element.innerHTML;//element.innerText ? element.innerText : element.textContent;
+        var doc = element.innerHTML;
         //Processing
         doc = exports.Header(doc);
         doc = exports.Style(doc);
