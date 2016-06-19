@@ -65,11 +65,11 @@ DocTyp.Docify('pre', 'Dark');
 ```
 ` Quoting Code `
 ```
-**Quoting Block**
+**Quoting Text**
 ```
 {[ Quoting Text ]}
 ```
-**Quoting Block with Credit**
+**Quoting Text with Credit**
 ```
 [Credit]{[ Quoting Text ]}
 ```
