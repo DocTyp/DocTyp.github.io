@@ -98,6 +98,7 @@ var DocTyp = (function(exports) {
       var object = document.getElementsByTagName(element) ||
         document.getElementById(element) ||
         document.getElementsByClassName(element);
+        console.log(object);
       //Check if more than one element
       if (!object.length) {
         Single(object, theme);
