@@ -57,7 +57,8 @@ var DocTyp = (function(exports) {
   }
   
   function Multiple(elements, theme) {
-    for (var element in elements) {
+    for (element in elements) {
+      console.log(element);
       //Check if element is an element
       if (element.nodeType && element.nodeType == 1) {
         //Adding class to element
@@ -98,7 +99,6 @@ var DocTyp = (function(exports) {
       var object = document.getElementsByTagName(element) ||
         document.getElementById(element) ||
         document.getElementsByClassName(element);
-        console.log(object);
       //Check if more than one element
       if (!object.length) {
         Single(object, theme);
