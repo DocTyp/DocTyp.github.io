@@ -39,14 +39,14 @@
     'subscript': {pattern: /\^{1}/gm, regex: /\^{1}(.*?)\^{1}/gm}
   };
   var rule = {
-    'rule-solid': {pattern: /[]/gm, regex: /\-{4,}/gm},
-    'rule-dash': {pattern: /[]/gm, regex: /\.{4,}/gm}
+    'rule-solid': {pattern: /[]/gm, regex: /^\-{4,}/gm},
+    'rule-dash': {pattern: /[]/gm, regex: /^\.{4,}/gm}
   };
   var block = {
-    'pre-extra': {pattern: /[]/gm, regex: /\[(.*?)\|(.*?)\]\`{3,}([\s\S]*?)\`{3,}/gm},
-    'quote-extra': {pattern: /[]/gm, regex: /\[(.*?)\]\`{2}([\s\S]*?)\`{2}/gm},
-    'pre': {pattern: /\`{3,}/gm, regex: /\`{3,}([\s\S]*?)\`{3,}/gm},
-    'quote': {pattern: /\`{2}/gm, regex: /\`{2}([\s\S]*?)\`{2}/gm},
+    'pre-extra': {pattern: /[]/gm, regex: /^\[(.*?)\|(.*?)\]\`{3,}([\s\S]*?)\`{3,}/gm},
+    'quote-extra': {pattern: /[]/gm, regex: /^\[(.*?)\]\`{2}([\s\S]*?)\`{2}/gm},
+    'pre': {pattern: /\`{3,}/gm, regex: /^\`{3,}([\s\S]*?)\`{3,}/gm},
+    'quote': {pattern: /\`{2}/gm, regex: /^\`{2}([\s\S]*?)\`{2}/gm},
     'code': {pattern: /\`{1}/gm, regex: /\`{1}(.*?)\`{1}/gm}
   };
   var list = {
