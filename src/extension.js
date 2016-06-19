@@ -124,14 +124,14 @@
           var extra = exports.Prepare(match).split(']``'),
             credit = extra[0].split('[')[1],
             quote = extra[1].split('``')[0];
-          return '<div class="' + prefix + key + '"><span class="' + prefix + 'quote">' + exports.Trim(quote) + '</span><span class="' + prefix + 'credit">' + exports.Trim(credit) + '</span></div>';
+          return '<div class="' + prefix + key + '"><span class="' + prefix + 'quote">"' + exports.Trim(quote) + '"</span><span class="' + prefix + 'credit">' + exports.Trim(credit) + '</span></div>';
         } else {
           var temp = exports.Prepare(match).replace(block[key].pattern, ''),
             classes = 'nohighlight language-none';
           if (key == 'pre') {
             return '<pre class="' + prefix + key + ' ' + classes + '"><code class="' + classes + '">' + temp + '</code></pre>';
           } else if (key == 'quote') {
-            return '<span class="' + prefix + key + '">' + exports.Trim(temp) + '</span>';
+            return '<div class="' + prefix + key + '">"' + exports.Trim(temp) + '"</div>';
           } else {
             return '<code class="' + prefix + key + ' ' + classes + '">' + exports.Trim(temp) + '</code>';
           }
