@@ -30,6 +30,7 @@ var DocTyp = (function(exports) {
   ============================Private===========================
   ============================================================*/
   function Single(element, theme) {
+    console.log(element);
     //Check if element is an element
     if (element.nodeType && element.nodeType == 1) {
       //Adding class to element
