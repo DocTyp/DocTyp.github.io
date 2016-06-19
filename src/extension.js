@@ -92,7 +92,7 @@
   exports.Rule = function(doc) {
     for (key in rule) {
       doc = doc.replace(rule[key].regex, function(match) {
-        return '<hr class="' + prefix + key + '"/>';
+        return '<hr class="' + prefix + key + '">';
       });
     }
     return doc;
@@ -189,7 +189,7 @@
     return doc.replace(/(^\s+|\s+$)/gm, '');
   };
   exports.Clean = function(doc) {
-    return doc.replace(/\n/gm, '<br/>');
+    return doc.replace(/\n/gm, '<br>');
   };
   
   /*============================================================
