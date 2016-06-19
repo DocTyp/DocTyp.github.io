@@ -171,12 +171,12 @@
   exports.List = function(doc) {
     for (key in list) {
       doc = doc.replace(list[key].regex, function(match) {
-        if (key == 'list-solid' || key == 'list-empty' || key == 'list-square') {
+        if (key == 'list-disc' || key == 'list-circle' || key == 'list-square') {
           return '<ul class="' + prefix + key + '">' + match.replace(/.+\n/gm, function(line) {
             var temp = exports.Prepare(line).replace(list[key].pattern, '');
             return '<li>' + exports.Trim(temp) + '</li>';
           }) + '</ul>';
-        } else if (key == 'list-number' || key == 'list-roman' || key == 'list-letter') {
+        } else if (key == 'list-decimal' || key == 'list-roman' || key == 'list-alpha') {
           return '<ol class="' + prefix + key + '">' + match.replace(/.+\n/gm, function(line) {
             var temp = exports.Prepare(line).replace(list[key].pattern, '');
             return '<li>' + exports.Trim(temp) + '</li>';
