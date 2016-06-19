@@ -45,7 +45,7 @@
     'rule-dotted': {pattern: /[]/gm, regex: /^\.{4,}/gm}
   };
   var quote = {
-    //'quote-code': {pattern: /\`/gm, regex: /\`(.*?)\`/gm},
+    'quote-code': {pattern: /\`/gm, regex: /\`(.*?)\`/gm},
     'quote-extra': {pattern: /[]/gm, regex: /\[(.*?)\]\{\[([\s\S]*?)\]\}/gm},
     'quote-plain': {pattern: /(\{\[|\]\})/gm, regex: /\{\[([\s\S]*?)\]\}/gm}
   };
@@ -117,12 +117,9 @@
   ============================Quote=============================
   ============================================================*/
   exports.Quote = function(doc) {
-    for (key in quote) {
+    for (var key in quote) {
       doc = doc.replace(quote[key].regex, function(match) {
         if (key == 'quote-code') {
-          console.log(key);
-          console.log(quote[key]);
-          console.log(quote[key].pattern);
           var temp = exports.Prepare(match).replace(quote[key].pattern, ''),
             classes = prefix + key + ' nohighlight language-none';
           return '<code class="' + classes + '">' + exports.Trim(temp) + '</code>';
