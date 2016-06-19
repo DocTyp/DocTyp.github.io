@@ -46,46 +46,65 @@ DocTyp.Docify('pre', 'Dark');
 - `### Header 3`
 - `#### Header 4`
 
-----
-
-###### Styling
+###### Styling Text
 - `** Bold **`
 - `* Italic *`
-- `.. Underline ..`
+- `_ Underline _`
 - `~ Strike ~`
 - `= Highlight =`
-- `Word^^ Superscript ^^`
-- `Word^ Subscript ^`
-
-----
+- `Word+ Superscript +`
+- `Word- Subscript -`
 
 ###### Horizontal Ruling
-- `----`: Solid
-- `....`: Dash
+- `____`: Solid
+- `----`: Dash
+- `....`: Dotted
 
-----
+###### Quoting Blocks
+**Quoting Code**
+```
+` Quoting Code `
+```
+**Quoting Block**
+```
+{[ Quoting Text ]}
+```
+**Quoting Block with Credit**
+```
+[Credit]{[ Quoting Text ]}
+```
 
-###### Blocks
-- `` ` Quoting Code ` ``
-- ``` `` Quoting Text `` ```
-- `` ``` Preformatted Code ``` ``
-- `[Credit]`` Quoting Text with Credit `` `
-- `` [Language|Service]``` Preformatted Code using External Services ``` ``
-  - [Highlight](https://highlightjs.org)
-  - [Prettify](https://github.com/google/code-prettify)
-  - [Prism](http://prismjs.com)
-  - [Rainbow](https://craig.is/making/rainbows)
-  - [SHJS](http://shjs.sourceforge.net)
-
-----
+###### Coding Blocks
+**Preformatted Code**
+```
+{( Preformatted Code )}
+```
+**Preformatted Code with Syntax Highlighting**
+```
+[Language|Service]{( Preformatted Code )}
+```
+**Syntax Highlighting Services**
+- [Highlight](https://highlightjs.org)
+- [Prettify](https://github.com/google/code-prettify)
+- [Prism](http://prismjs.com)
+- [Rainbow](https://craig.is/making/rainbows)
+- [SHJS](http://shjs.sourceforge.net)
 
 ###### Lists
-- `- Unordered`
-- `1. Ordered`
+- `- Unordered`: Solid Circle
+- `* Unordered`: Empty Circle
+- `# Unordered`: Square
+- `0. Ordered`: Number
+- `1. Ordered`: Roman
+- `a. Ordered`: Letter
 - `[X] Checked`
 - `[ ] Unchecked`
+*Ordered Lists increment automatically. e.g. No need for 1., 2., 3., ...*
 
-----
+###### Images
+```
+![ Alt Text ]( Path to Image )
+```
 
 ###### Links
 - `doctypgithub@gmail.com`
@@ -100,9 +119,10 @@ DocTyp.Docify('pre', 'Dark');
 <pre class="doctyp" id="doctyp">
 # Hello World!
 
-[JavaScript|Prism]```
+[JavaScript|Prism]{(
 var msg = 'Hello World!';
-alert(msg);```
+alert(msg);
+)}
 </pre>
 ```
 
