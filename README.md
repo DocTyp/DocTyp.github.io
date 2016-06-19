@@ -108,17 +108,17 @@ DocTyp.Docify('pre', 'Dark');
 
 ----
 
-###### Images
-```
-![ Alt Text ]( Path to Image )
-```
-
-----
-
 ###### Links
 - `doctypgithub@gmail.com`
 - `https://doctyp.github.io`
 - `[ Doctyp ]( https://doctyp.github.io )`
+
+----
+
+###### Images
+```
+![ Alt Text ]( Path to Image )
+```
 
 
 ## Example
