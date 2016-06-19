@@ -49,8 +49,11 @@ var DocTyp = (function(exports) {
     doc = exports.Header(doc);
     doc = exports.Style(doc);
     doc = exports.Rule(doc);
-    doc = exports.Block(doc);
+    doc = exports.Quote(doc);
+    doc = exports.Code(doc);
+    doc = exports.Image(doc);
     doc = exports.List(doc);
+    doc = exports.Link(doc);
     doc = exports.Clean(doc);
     //Complete Process
     Complete(element, doc);
@@ -67,8 +70,11 @@ var DocTyp = (function(exports) {
         doc = exports.Header(doc);
         doc = exports.Style(doc);
         doc = exports.Rule(doc);
-        doc = exports.Block(doc);
+        doc = exports.Quote(doc);
+        doc = exports.Code(doc);
+        doc = exports.Image(doc);
         doc = exports.List(doc);
+        doc = exports.Link(doc);
         doc = exports.Clean(doc);
         //Complete Process
         Complete(element, doc);
