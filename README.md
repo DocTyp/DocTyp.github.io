@@ -117,7 +117,7 @@ DocTyp.Docify('pre', 'Dark');
 
 ###### Images
 ```
-[ Alt Text ]!( Path to Image )
+![ Alt Text ]( Path to Image )
 ```
 
 
