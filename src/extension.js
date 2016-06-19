@@ -64,17 +64,6 @@
   /*============================================================
   ============================Private===========================
   ============================================================*/
-  function FixPre(elements) {
-    for (var a = 0; a < elements.length; a++) {
-      var element = elements[a],
-        code = element.innerHTML,
-        fixed = code.replace(/\<br\>/gm, '\n');
-      element.innerHTML = fixed;
-    }
-  }
-  function FixNewLine(doc) {
-    return doc.replace(/\<br\>/gm, '');
-  }
   
   /*============================================================
   ============================Header============================
@@ -130,13 +119,12 @@
             dataClasses = 'data-language="' + language + '"';
           exports.LoadScript('Syntax/' + service + '/script.js');
           exports.LoadStyle('Syntax/' + service + '/' + exports.theme + '.css');
-          exports.service = service;
           return '<pre class="' + prefix + key + ' ' + classes + '" ' + dataClasses + '><code class="' + classes + '" ' + dataClasses + '>' + second + '</code></pre>';
         } else if (key == 'quote-extra') {
           var extra = exports.Prepare(match).split(']``'),
             credit = extra[0].split('[')[1],
             quote = extra[1].split('``')[0];
-          return '<span class="' + prefix + key + '"><span class="' + prefix + 'quote">' + exports.Trim(quote) + '</span><span class="' + prefix + 'credit">' + exports.Trim(credit) + '</span></span>';
+          return '<div class="' + prefix + key + '"><span class="' + prefix + 'quote">' + exports.Trim(quote) + '</span><span class="' + prefix + 'credit">' + exports.Trim(credit) + '</span></div>';
         } else {
           var temp = exports.Prepare(match).replace(block[key].pattern, ''),
             classes = 'nohighlight language-none';
@@ -159,7 +147,6 @@
   exports.List = function(doc) {
     for (key in list) {
       doc = doc.replace(list[key].regex, function(match) {
-        match = FixNewLine(match);
         if (key == 'unordered' || key == 'ordered') {
           var tag = key == 'unordered' ? 'ul' : 'ol';
           return '<' + tag + ' class="' + prefix + key + '">' + match.replace(/.+/gm, function(line) {
@@ -214,7 +201,12 @@
   ============================Syntax============================
   ============================================================*/
   exports.Syntax = function(elements) {
-    FixPre(elements);
+    for (var a = 0; a < elements.length; a++) {
+      var element = elements[a],
+        code = element.innerHTML,
+        fixed = code.replace(/\<br\>/gm, '\n');
+      element.innerHTML = fixed;
+    }
   };
   
   /*============================================================
