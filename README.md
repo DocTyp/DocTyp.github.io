@@ -1,1 +1,1 @@
-# DocTyp.github.io
+# DocTyp
