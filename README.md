@@ -97,9 +97,9 @@ DocTyp.Docify('pre', 'Dark');
 ###### Lists
 - `- Unordered`: Solid Circle
 - `* Unordered`: Empty Circle
-- `# Unordered`: Square
-- `0. Ordered`: Number
-- `1. Ordered`: Roman
+- `@ Unordered`: Square
+- `o. Ordered`: Number
+- `i. Ordered`: Roman
 - `a. Ordered`: Letter
 - `[X] Checked`
 - `[ ] Unchecked`
