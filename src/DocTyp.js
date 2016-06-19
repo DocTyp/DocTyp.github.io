@@ -56,9 +56,9 @@ var DocTyp = (function(exports) {
     }
   }
   
-  function Multiple(elements, theme) {
-    for (element in elements.nodeList) {
-      console.log(element);
+  function Multiple(element, theme) {
+    for (var a = 0; a < element.length; a++) {
+      console.log(element[a]);
       //Check if element is an element
       if (element.nodeType && element.nodeType == 1) {
         //Adding class to element
