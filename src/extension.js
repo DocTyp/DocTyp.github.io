@@ -47,8 +47,8 @@
     'quote': {pattern: /[\{\}]/gm, regex: /\{{1,}([\s\S]*?)\}{1,}/gm}
   };
   var list = {
-    'unordered': {pattern: /\-/gm, regex: /((.*?)\-(?!(.*?)\-).+$\n){1,}/gm},
-    'ordered': {pattern: /\d{1,}\./gm, regex: /((.*?)\d{1,}\..+$\n){1,}/gm}
+    'unordered': {pattern: /\-/gm, regex: /(^\-.+\n){1,}/gm},
+    'ordered': {pattern: /\d{1,}\./gm, regex: /(^\d{1,}\..+\n){1,}/gm}
   };
   var link = {
     'header1': {pattern: /\#/gm, regex: /^\#{1}(?!\#)(.*?)$/gm},
