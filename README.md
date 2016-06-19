@@ -45,11 +45,11 @@ DocTyp.Docify('pre', 'Dark');
 ###### Styling Text
 - `** Bold **`
 - `* Italic *`
-- `_ Underline _`
-- `~ Strike ~`
-- `= Highlight =`
-- `Word+ Superscript +`
-- `Word- Subscript -`
+- `__ Underline __`
+- `~~ Strike ~~`
+- `== Highlight ==`
+- `Word++ Superscript ++`
+- `Word-- Subscript --`
 
 ----
 
