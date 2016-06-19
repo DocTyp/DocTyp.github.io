@@ -37,6 +37,7 @@ var DocTyp = (function(exports) {
     article.innerHTML = doc;
     //Replace the old Element with new
     element.parentNode.replaceChild(article, element);
+    exports.CallSyntax();
   }
   
   function Single(element) {
