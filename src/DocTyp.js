@@ -37,11 +37,11 @@ var DocTyp = (function(exports) {
     article.innerHTML = doc;
     //Replace the old Element with new
     element.parentNode.replaceChild(article, element);
-    if (article.getElementsByTagName('pre').length > 0) {
-      exports.Syntax(article.getElementsByTagName('pre'));
+    if (article.querySelectorAll('pre').length > 0) {
+      exports.Syntax(article.querySelectorAll('pre'));
     }
-    if (article.getElementsByTagName('ul ol').length > 0) {
-      exports.FixNewLine(article.getElementsByTagName('ul ol'));
+    if (article.querySelectorAll('ul ol').length > 0) {
+      exports.FixNewLine(article.querySelectorAll('ul ol'));
     }
   }
   
