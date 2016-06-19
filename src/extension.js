@@ -188,11 +188,11 @@
             return '<li>' + exports.Trim(temp) + '</li>';
           }) + '</ol>';
         } else {
-          return '<span class="' + prefix + key + '">' + match.replace(/.+\n/gm, function(line) {
+          return '<div class="' + prefix + key + '">' + match.replace(/.+\n/gm, function(line) {
             var temp = exports.Prepare(line).replace(/\[[Xx\s]?\]/gm, ''),
               tag = (new RegExp(/\[\s?\]/gm)).test(line) ? 'unchecked' : 'checked';
-            return '<span class="' + prefix + 'box"></span><span class="' + prefix + 'item">' + exports.Trim(temp) + '</span>';
-          }) + '</span>';
+            return '<span class="' + prefix + tag + '"><span class="' + prefix + 'box"></span><span class="' + prefix + 'item">' + exports.Trim(temp) + '</span></span>';
+          }) + '</div>';
         }
       });
     }
