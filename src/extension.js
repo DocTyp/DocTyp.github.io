@@ -164,7 +164,7 @@
           }) + '</' + tag + '>';
         } else {
           return '<span class="' + prefix + key + '">' + match.replace(/.+/gm, function(line) {
-            var temp = exports.Prepare(line).replace(/\[\]/gm, ''),
+            var temp = exports.Prepare(line).replace(/\[[Xx]?\]/gm, ''),
               tag = (new RegExp('\[\]', 'gm')).test(line) ? 'unchecked' : 'checked' ;
             return '<span class="' + prefix + tag + '"><span class="' + prefix + 'box"></span><span class="' + prefix + 'item">' + exports.Trim(temp) + '</span></span>';
           }) + '</span>';
@@ -205,6 +205,14 @@
   exports.Clean = function(doc) {
     return doc.replace(/\n/gm, '<br>');
   };
+  exports.FixNewLine = function(elements) {
+    for (var a = 0; a < elements.length; a++) {
+      var element = elements[a],
+        content = element.innerHTML,
+        fixed = content.replace(/\<br\>/gm, '');
+      element.innerHTML = fixed;
+    }
+  };
   
   /*============================================================
   ============================Syntax============================
@@ -214,10 +222,13 @@
       case 'prism':
         break;
       case 'highlight':
+        hljs.initHighlighting();
         break;
       case 'shjs':
+        sh_highlightDocument();
         break;
       case 'rainbow':
+        Rainbow.color();
         break;
       case 'prettify':
         prettyPrint();
