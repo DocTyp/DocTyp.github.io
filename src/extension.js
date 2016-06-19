@@ -54,12 +54,12 @@
     'code-plain': {pattern: /(\{\(|\)\})/gm, regex: /\{\(([\s\S]*?)\)\}/gm}
   };
   var list = {
-    'list-disc': {pattern: /(\-|\n)/gm, regex: /(^\-(?!\-{3,}).+\n){1,}/gm},
-    'list-circle': {pattern: /(\*|\n)/gm, regex: /(^\*(?!\*{3,}).+\n){1,}/gm},
-    'list-square': {pattern: /(\@|\n)/gm, regex: /(^\@(?!\@{3,}).+\n){1,}/gm},
-    'list-decimal': {pattern: /(\o\.|\n)/gm, regex: /(^\o\..+\n){1,}/igm},
-    'list-roman': {pattern: /(\i\.|\n)/gm, regex: /(^\i\..+\n){1,}/igm},
-    'list-alpha': {pattern: /(\a\.|\n)/gm, regex: /(^\a\..+\n){1,}/igm},
+    'list-disc': {pattern: /(\-)/gm, regex: /(^\-(?!\-{3,}).+\n){1,}/gm},
+    'list-circle': {pattern: /(\*)/gm, regex: /(^\*(?!\*{3,}).+\n){1,}/gm},
+    'list-square': {pattern: /(\@)/gm, regex: /(^\@(?!\@{3,}).+\n){1,}/gm},
+    'list-decimal': {pattern: /(\o\.)/gm, regex: /(^\o\..+\n){1,}/igm},
+    'list-roman': {pattern: /(\i\.)/gm, regex: /(^\i\..+\n){1,}/igm},
+    'list-alpha': {pattern: /(\a\.)/gm, regex: /(^\a\..+\n){1,}/igm},
     'checklist': {pattern: /\[[Xx\s]?\]/gm, regex: /(^\[[Xx\s]?\].+\n){1,}/gm}
   };
   var link = {
