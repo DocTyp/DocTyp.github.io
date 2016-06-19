@@ -38,7 +38,7 @@ var DocTyp = (function(exports) {
     //Replace the old Element with new
     element.parentNode.replaceChild(article, element);
     if (article.getElementsByTagName('pre').length > 0) {
-      exports.CallSyntax(article.getElementsByTagName('pre'));
+      exports.Syntax(article.getElementsByTagName('pre'));
     }
   }
   
