@@ -124,7 +124,7 @@
           var extra = exports.Prepare(match).split(']``'),
             credit = extra[0].split('[')[1],
             quote = extra[1].split('``')[0];
-          return '<div class="' + prefix + key + '"><span class="' + prefix + 'quote">"' + exports.Trim(quote) + '"</span><span class="' + prefix + 'credit">' + exports.Trim(credit) + '</span></div>';
+          return '<div class="' + prefix + key + '"><span class="' + prefix + 'quote">"' + exports.Trim(quote) + '"</span><br><span class="' + prefix + 'credit">' + exports.Trim(credit) + '</span></div>';
         } else {
           var temp = exports.Prepare(match).replace(block[key].pattern, ''),
             classes = 'nohighlight language-none';
