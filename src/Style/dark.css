@@ -206,13 +206,13 @@
   border: 0;
 }
 .doctyp-th {
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(70, 70, 70, 0.3);
   color: rgb(220, 220, 220);
   font-weight: bold;
   border: 0;
 }
 .doctyp-td {
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(70, 70, 70, 0.1);
   color: rgb(220, 220, 220);
   border: 0;
   border-top: 1px solid rgb(90, 90, 90);
@@ -221,6 +221,6 @@
   padding: 5px;
 }
 .doctyp-td:hover {
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(70, 70, 70, 0.2);
   color: rgb(220, 220, 220);
 }
