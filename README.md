@@ -151,7 +151,7 @@ DocTyp.Docify('pre', 'Dark');
 <pre class="doctyp" id="doctyp">
 # Hello World!
 
-[JavaScript|Prism]{(
+[JavaScript|Highlight]{(
 var msg = 'Hello World!';
 alert(msg);
 )}
