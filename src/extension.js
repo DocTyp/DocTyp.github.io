@@ -247,22 +247,15 @@
     for (key in table) {
       doc = '<table class="' + prefix + key + '"><tbody>' + doc.replace(table[key].regex, function(match) {
         var extra = exports.Prepare(match).split('{|')[1].split('|}')[0],
-          tBody = extra.split('||');
-        for (var a = 0; a < tBody.length; a++) {
-          var tRow = tBody[a];
-          console.log(tRow);
-          //Check if Title
-          if ((new RegExp(/\={2}/gm)).test(tRow)) {
-            return '<tr class="' + prefix + 'trow">' + tRow.replace(/.+\n/gm, function(row) {
-              var temp = row.replace(table[key].pattern, '');
-              return '<th class="' + prefix + 'theader">' + exports.Trim(temp) + '</th>';
-            }) + '</tr>';
-          } else {
-            return '<tr class="' + prefix + 'trow">' + tRow.replace(/.+\n/gm, function(row) {
-              var temp = row.replace(table[key].pattern, '');
-              return '<td class="' + prefix + 'tdata">' + exports.Trim(temp) + '</td>';
-            }) + '</tr>';
-          }
+          data = extra.split('||');
+        for (var a = 0; a < data.length; a++) {
+          var row = data[a],
+            tag = (new RegExp(/\={2}/gm)).test(row) ? 'th' : 'td';
+          console.log(tag);
+          return '<tr class="' + prefix + 'row">' + row.replace(/.+\n/gm, function(col) {
+            var temp = col.replace(table[key].pattern, '');
+            return '<' + tag + ' class="' + prefix + tag + '">' + exports.Trim(temp) + '</' + tag + '>';
+          }) + '</tr>';
         }
       }) + '</tbody></table>';
     }
