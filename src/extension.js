@@ -72,7 +72,7 @@
     'image': {pattern: /[]/gm, regex: /\!\[(.*?)\]\((.*?)\)/gm}
   };
   var table = {
-    'table': {pattern: /\>/gm, regex: /\{\|([\s\S]*?)\|\}/gm}
+    'table': {pattern: /\&gt\;/gm, regex: /\{\|([\s\S]*?)\|\}/gm}
   };
   
   /*============================================================
@@ -251,7 +251,7 @@
         for (var a = 0; a < tBody.length; a++) {
           var tRow = tBody[a];
           //Check if Title
-          if ((new RegExp(/\>\>/gm)).test(tRow)) {
+          if ((new RegExp(/(\&gt\;){2}/gm)).test(tRow)) {
             return '<tr class="' + prefix + 'trow">' + tRow.replace(/.+\n/gm, function(row) {
               var temp = row.replace(table[key].pattern, '');
               return '<th class="' + prefix + 'theader">' + exports.Trim(temp) + '</th>';
@@ -272,7 +272,7 @@
   ===========================Cleaning===========================
   ============================================================*/
   exports.Prepare = function(doc) {
-    return doc.replace(/\<(\/)?span(.*?)\>/gm, '');
+    return doc.replace(/\<(\/)?span(.*?)\>/gm, '').replace(/\>/gm, '&gt;');
   };
   exports.Trim = function(doc) {
     return doc.replace(/(^\s+|\s+$)/gm, '');
