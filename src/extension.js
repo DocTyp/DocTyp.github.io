@@ -271,7 +271,7 @@
             tag = (new RegExp(/\={2}/gm)).test(row) ? 'th' : 'td';
           data += '<tr class="' + prefix + tag + '">' + row.replace(/.+\n/gm, function(col) {
             var temp = col.replace(table[key].pattern, '');
-            return '<' + tag + ' class="' + prefix + 'col" style="width: ' + width + '%">' + exports.Trim(temp) + '</' + tag + '>';
+            return '<' + tag + ' class="' + prefix + 'col" style="width:' + width + '%;">' + exports.Trim(temp) + '</' + tag + '>';
           }) + '</tr>';
         }
         return data;
