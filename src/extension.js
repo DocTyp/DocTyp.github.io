@@ -49,11 +49,11 @@
   var quote = {
     'quote-code': {pattern: /\`/gm, regex: /\`(.*?)\`/gm},
     'quote-extra': {pattern: /[]/gm, regex: /\[(.*?)\]\{\[([\s\S]*?)\]\}/gm},
-    'quote-plain': {pattern: /(\{\[|\]\})/gm, regex: /\{\[([\s\S]*?)\]\}/gm}
+    'quote-plain': {pattern: /(\{\[([\s\n]{1,})?|([\s\n]{1,})?\]\})/gm, regex: /\{\[([\s\S]*?)\]\}/gm}
   };
   var code = {
     'code-extra': {pattern: /[]/gm, regex: /\[(.*?)\]\{\(([\s\S]*?)\)\}/gm},
-    'code-plain': {pattern: /(\{\(|\)\})/gm, regex: /\{\(([\s\S]*?)\)\}/gm}
+    'code-plain': {pattern: /(\{\(([\s\n]{1,})?|([\s\n]{1,})?\)\})/gm, regex: /\{\(([\s\S]*?)\)\}/gm}
   };
   var list = {
     'list-disc': {pattern: /(\-)/gm, regex: /(^\-(?!\-{3,}).+\n){1,}/gm},
@@ -71,7 +71,7 @@
   var image = {
     'image-extra': {pattern: /[]/gm, regex: /\[(.*?)\]\!\((.*?)\)/gm},
     'image-plain': {pattern: /(\!\(|\))/gm, regex: /\!\((.*?)\)/gm},
-    'image-grid': {pattern: /(\{\!|\!\})/gm, regex: /\{\!([\s\S]*?)\!\}/gm}
+    'image-grid': {pattern: /(\{\!([\s\n]{1,})?|([\s\n]{1,})?\!\})/gm, regex: /\{\!([\s\S]*?)\!\}/gm}
   };
   var table = {
     'table': {pattern: /\=/gm, regex: /\{\|([\s\S]*?)\|\}/gm}
