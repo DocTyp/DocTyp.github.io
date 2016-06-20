@@ -134,9 +134,9 @@
             classes = prefix + key + ' nohighlight language-none';
           return '<code class="' + classes + '">' + exports.Trim(temp) + '</code>';
         } else if (key == 'quote-extra') {
-          var extra = exports.Prepare(match).split(/\]\{\[((\s{0,})?\n{1,})?/gm),
-            credit = extra[0].split(/\[/gm)[1],
-            content = extra[1].split(/(\n{1,}(\s{0,})?)?\]\}/gm)[0],
+          var extra = exports.Prepare(match).split(/\]\{\[([\s\n]{1,})?/),
+            credit = extra[0].split(/\[/)[1],
+            content = extra[1].split(/(\n{1,}(\s{0,})?)?\]\}/)[0],
             classes = prefix + key;
           return '<div class="' + classes + '"><span class="' + prefix + 'quote">"' + exports.Trim(content) + '"</span><br><span class="' + prefix + 'credit">' + exports.Trim(credit) + '</span></div>';
         } else {
@@ -156,9 +156,9 @@
     for (key in code) {
       doc = doc.replace(code[key].regex, function(match) {
         if (key == 'code-extra') {
-          var extra = exports.Prepare(match).split(/\]\{\(((\s{0,})?\n{1,})?/gm),
-            first = extra[0].split(/\[/gm)[1].split(/\|/gm),
-            second = extra[1].split(/(\n{1,}(\s{0,})?)?\)\}/gm)[0],
+          var extra = exports.Prepare(match).split(/\]\{\(([\s\n]{1,})?/),
+            first = extra[0].split(/\[/)[1].split(/\|/),
+            second = extra[1].split(/([\s\n]{1,})?\)\}/)[0],
             language = exports.Trim(first[0]).toLowerCase(),
             service = exports.Trim(first[1]).toLowerCase(),
             classes = prefix + key + ' language-' + language + ' sh_' + language + ' prettyprint lang-' + language,
@@ -212,9 +212,9 @@
       doc = doc.replace(link[key].regex, function(match) {
         if (key == 'url') {
           if ((new RegExp(/^\[(.*?)\]\((.*?)(https?|ftp|file)\:\/{2}(.*?)\)$/gm)).test(match)) {
-            var extra = exports.Prepare(match).split(/\]\(/gm),
-              title = extra[0].split(/\[/gm)[1],
-              url = extra[1].split(/\]/gm)[0];
+            var extra = exports.Prepare(match).split(/\]\(/),
+              title = extra[0].split(/\[/)[1],
+              url = extra[1].split(/\]/)[0];
             return '<a class="' + prefix + key + '" href="' + exports.Trim(url) + '" target="_blank">' + exports.Trim(title) + '</a>';
           } else {
             return '<a class="' + prefix + key + '" href="' + exports.Trim(match) + '" target="_blank">' + exports.Trim(match) + '</a>';
@@ -234,9 +234,9 @@
     for (key in image) {
       if (key == 'image-extra') {
         doc = doc.replace(image[key].regex, function(match) {
-          var extra = exports.Prepare(match).split(/\]\!\(/gm),
-            alt = extra[0].split(/\[/gm)[1],
-            url = extra[1].split(/\)/gm)[0];
+          var extra = exports.Prepare(match).split(/\]\!\(/),
+            alt = extra[0].split(/\[/)[1],
+            url = extra[1].split(/\)/)[0];
           return '<div class="' + prefix + key + '"><img class="' + prefix + 'image" src="' + exports.Trim(url) + '" alt="' + exports.Trim(alt) + '"><div class="' + prefix + 'text">' + exports.Trim(alt) + '</div></div>';
         });
       } else if (key == 'image-plain') {
@@ -260,8 +260,8 @@
   exports.Table = function(doc) {
     for (key in table) {
       doc = '<table class="' + prefix + key + '"><tbody>' + doc.replace(table[key].regex, function(match) {
-        var extra = exports.Prepare(match).split(/\{\|/gm)[1].split(/\|\}/gm)[0],
-          rows = extra.split(/\|\|/gm),
+        var extra = exports.Prepare(match).split(/\{\|/)[1].split(/\|\}/)[0],
+          rows = extra.split(/\|\|/),
           data = '';
         for (var a = 0; a < rows.length; a++) {
           var row = rows[a],
