@@ -70,7 +70,8 @@
   };
   var image = {
     'image-extra': {pattern: /[]/gm, regex: /\[(.*?)\]\!\((.*?)\)/gm},
-    'image-plain': {pattern: /(\!\(|\))/gm, regex: /\!\((.*?)\)/gm}
+    'image-plain': {pattern: /(\!\(|\))/gm, regex: /\!\((.*?)\)/gm},
+    'image-grid': {pattern: /(\{\!|\!\})/gm, regex: /\{\!([\s\S]*?)\!\}/gm}
   };
   var table = {
     'table': {pattern: /\=/gm, regex: /\{\|([\s\S]*?)\|\}/gm}
@@ -238,10 +239,15 @@
             url = extra[1].split(')')[0];
           return '<div class="' + prefix + key + '"><img class="' + prefix + 'image" src="' + exports.Trim(url) + '" alt="' + exports.Trim(alt) + '"><div class="' + prefix + 'text">' + exports.Trim(alt) + '</div></div>';
         });
-      } else {
+      } else if (key == 'image-plain') {
         doc = doc.replace(image[key].regex, function(match) {
           var temp = exports.Prepare(match).replace(image[key].pattern, '');
           return '<img class="' + prefix + key + '" src="' + exports.Trim(temp) + '">';
+        });
+      } else {
+        doc = doc.replace(image[key].regex, function(match) {
+          var temp = exports.Prepare(match).replace(image[key].pattern, '').replace(/(\n|\<br\>)/gm, '');
+          return '<div class="' + prefix + key + '">' + exports.Trim(temp) + '</div>';
         });
       }
     }
