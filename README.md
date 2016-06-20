@@ -118,7 +118,7 @@ DocTyp.Docify('pre', 'Dark');
 ----
 
 ###### Images
-*Accepts https, http, ftp, file & Base64*
+Accepts: **https, http, ftp, file & Base64**
 - `!( https://doctyp.github.io/Images/icon.png )`: Without Title
 - `[ DocTyp Logo ]!( https://doctyp.github.io/Images/icon.png )`: With Title
 - `{! ... !}`: Grid Layout
