@@ -264,14 +264,15 @@
       doc = '<table class="' + prefix + key + '"><tbody>' + doc.replace(table[key].regex, function(match) {
         var extra = exports.Prepare(match).split(/\{\|/)[1].split(/\|\}/)[0],
           rows = extra.split(/\|\|/),
-          data = '',
-          width = (100 / rows.length).toFixed(0);
+          data = '';
         for (var a = 0; a < rows.length; a++) {
           var row = rows[a],
+            count = row.match(/.+\n/gm).length,
+            width = (100 / count).toFixed(0),
             tag = (new RegExp(/\={2}/gm)).test(row) ? 'th' : 'td';
           data += '<tr class="' + prefix + tag + '">' + row.replace(/.+\n/gm, function(col) {
             var temp = col.replace(table[key].pattern, '');
-            return '<' + tag + ' class="' + prefix + 'col" style="width:' + width + '%;">' + exports.Trim(temp) + '</' + tag + '>';
+            return '<' + tag + ' class="' + prefix + 'col" style="width: ' + width + '%;">' + exports.Trim(temp) + '</' + tag + '>';
           }) + '</tr>';
         }
         return data;
