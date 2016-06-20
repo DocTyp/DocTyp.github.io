@@ -71,6 +71,9 @@
   var image = {
     'image': {pattern: /[]/gm, regex: /\!\[(.*?)\]\((.*?)\)/gm}
   };
+  var table = {
+    'table': {pattern: /\>/gm, regex: /\{\|([\s\S]*?)\|\}/gm}
+  };
   
   /*============================================================
   ============================Private===========================
@@ -228,15 +231,39 @@
   exports.Image = function(doc) {
     for (key in image) {
       doc = doc.replace(image[key].regex, function(match) {
-        console.log(match);
         var extra = exports.Prepare(match).split(']('),
           alt = exports.Trim(extra[0].split('![')[1]).toLowerCase(),
           url = exports.Trim(extra[1].split(')')[0]).toLowerCase();
-          console.log(extra);
-          console.log(alt);
-          console.log(url);
         return '<img class="' + prefix + key + '" src="' + url + '" alt="' + alt + '">';
       });
+    }
+    return doc;
+  };
+  
+  /*============================================================
+  ============================Table=============================
+  ============================================================*/
+  exports.Table = function(doc) {
+    for (key in table) {
+      doc = '<table class="' + prefix + key + '"><tbody>' + doc.replace(table[key].regex, function(match) {
+        var extra = exports.Prepare(match).split('{|')[1].split('|}')[0],
+          tBody = extra.split('||');
+        for (var a = 0; a < tBody.length; a++) {
+          var tRow = tBody[a];
+          //Check if Title
+          if ((new RegExp(/\>\>/gm)).test(tRow)) {
+            return '<tr class="' + prefix + 'trow">' + tRow.replace(/.+\n/gm, function(row) {
+              var temp = row.replace(table[key].pattern, '');
+              return '<th class="' + prefix + 'theader">' + exports.Trim(temp) + '</th>';
+            }) + '</tr>';
+          } else {
+            return '<tr class="' + prefix + 'trow">' + tRow.replace(/.+\n/gm, function(row) {
+              var temp = row.replace(table[key].pattern, '');
+              return '<td class="' + prefix + 'tdata">' + exports.Trim(temp) + '</td>';
+            }) + '</tr>';
+          }
+        }
+      }) + '</tbody></table>';
     }
     return doc;
   };
