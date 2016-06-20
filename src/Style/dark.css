@@ -159,6 +159,7 @@
   float: left;
   margin: 5px;
   border-radius: 3px;
+  border: 1px solid rgb(130, 130, 130);
   height: 10px;
   width: 10px;
 }
@@ -168,6 +169,7 @@
   float: left;
   margin: 5px;
   border-radius: 3px;
+  border: 1px solid rgb(130, 130, 130);
   height: 10px;
   width: 10px;
 }
