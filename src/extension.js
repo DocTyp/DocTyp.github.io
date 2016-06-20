@@ -236,7 +236,7 @@
           var extra = exports.Prepare(match).split(']!('),
             alt = extra[0].split('[')[1],
             url = extra[1].split(')')[0];
-          return '<div class="' + prefix + 'image"><img class="' + prefix + key + '" src="' + exports.Trim(url) + '" alt="' + exports.Trim(alt) + '"><div class="' + prefix + 'text">' + exports.Trim(alt) + '</div></div>';
+          return '<div class="' + prefix + key + '"><img class="' + prefix + 'image" src="' + exports.Trim(url) + '" alt="' + exports.Trim(alt) + '"><div class="' + prefix + 'text">' + exports.Trim(alt) + '</div></div>';
         });
       } else {
         doc = doc.replace(image[key].regex, function(match) {
