@@ -136,7 +136,7 @@
         } else if (key == 'quote-extra') {
           var extra = exports.Prepare(match).split(/\]\{\[([\s\n]{1,})?/),
             credit = extra[0].split(/\[/)[1],
-            content = extra[1].split(/([\s\n]{1,})?\]\}/)[0],
+            content = extra[1].split(/\]\}/)[0],
             classes = prefix + key;
           return '<div class="' + classes + '"><span class="' + prefix + 'quote">"' + exports.Trim(content) + '"</span><br><span class="' + prefix + 'credit">' + exports.Trim(credit) + '</span></div>';
         } else {
@@ -156,7 +156,7 @@
     for (key in code) {
       doc = doc.replace(code[key].regex, function(match) {
         if (key == 'code-extra') {
-          var extra = exports.Prepare(match).split(/\]\{\(/),
+          var extra = exports.Prepare(match).split(/\]\{\(([\s\n]{1,})?/),
             first = extra[0].split(/\[/)[1].split(/\|/),
             second = extra[1].split(/\)\}/)[0],
             language = exports.Trim(first[0]).toLowerCase(),
