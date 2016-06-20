@@ -118,8 +118,14 @@ DocTyp.Docify('pre', 'Dark');
 ----
 
 ###### Images
+- `!( https://doctyp.github.io/Images/icon.png )`: Without Title
+- `[ DocTyp Logo ]!( https://doctyp.github.io/Images/icon.png )`: With Title
+- `{! ... !}`: Grid Layout
 ```
+{!
 [ DocTyp Logo ]!( https://doctyp.github.io/Images/icon.png )
+[ DocTyp Logo ]!( https://doctyp.github.io/Images/icon.png )
+!}
 ```
 
 ----
