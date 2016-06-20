@@ -153,6 +153,10 @@
 .doctyp-list-alpha {
   list-style-type: lower-alpha;
 }
+.doctyp-checklist .doctyp-checked,
+.doctyp-checklist .doctyp-unchecked {
+  float: left;
+}
 .doctyp-checklist .doctyp-checked .doctyp-box {
   background-color: rgb(255, 140, 102);
   display: block;
