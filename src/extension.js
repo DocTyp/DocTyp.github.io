@@ -65,11 +65,11 @@
     'checklist': {pattern: /\[[Xx\s]?\]/gm, regex: /(^\[[Xx\s]?\].+\n){1,}/gm}
   };
   var link = {
-    'url': {pattern: /[]/gm, regex: /(\!\[(.*?)\]\((.*?)\)|\[(.*?)\]\((.*?)(https?|ftp|file)\:\/{2}(.*?)\)|\b((https?|ftp|file)\:\/{2}([\w\d\.]+)([\/\?\&\w\d\=\,\.\+\:\;\@\$\%\#\!\_\-]+)?)\b)/gm},
+    'url': {pattern: /[]/gm, regex: /(\[(.*?)\]\((.*?)(https?|ftp|file)\:\/{2}(.*?)\)|\b((https?|ftp|file)\:\/{2}([\w\d\.]+)([\/\?\&\w\d\=\,\.\+\:\;\@\$\%\#\!\_\-]+)?)\b)/gm},
     'email': {pattern: /[]/gm, regex: /\b(([\w\d\.\_\%\+\-]+)\@([\w\d\.\-]+)(\.\w{2,}))\b/gm}
   };
   var image = {
-    'image': {pattern: /[]/gm, regex: /\!\[(.*?)\]\((.*?)\)/gm}
+    'image': {pattern: /[]/gm, regex: /\((.*?)\)\((.*?)\)/gm}
   };
   var table = {
     'table': {pattern: /\=/gm, regex: /\{\|([\s\S]*?)\|\}/gm}
@@ -214,7 +214,7 @@
               title = extra[0].split('[')[1],
               url = extra[1].split(']')[0];
             return '<a class="' + prefix + key + '" href="' + exports.Trim(url) + '" target="_blank">' + exports.Trim(title) + '</a>';
-          } else if ((new RegExp(/^\b((https?|ftp|file)\:\/{2}([\w\d\.]+)([\/\?\&\w\d\=\,\.\+\:\;\@\$\%\#\!\_\-]+)?)\b$/gm)).test(match)) {
+          } else {
             return '<a class="' + prefix + key + '" href="' + exports.Trim(match) + '" target="_blank">' + exports.Trim(match) + '</a>';
           }
         } else {
@@ -231,8 +231,8 @@
   exports.Image = function(doc) {
     for (key in image) {
       doc = doc.replace(image[key].regex, function(match) {
-        var extra = exports.Prepare(match).split(']('),
-          alt = exports.Trim(extra[0].split('![')[1]).toLowerCase(),
+        var extra = exports.Prepare(match).split(')('),
+          alt = exports.Trim(extra[0].split('(')[1]).toLowerCase(),
           url = exports.Trim(extra[1].split(')')[0]).toLowerCase();
           console.log([alt, url]);
         return '<img class="' + prefix + key + '" src="' + url + '" alt="' + alt + '">';
