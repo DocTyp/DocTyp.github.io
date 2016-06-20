@@ -69,7 +69,8 @@
     'email': {pattern: /[]/gm, regex: /\b(([\w\d\.\_\%\+\-]+)\@([\w\d\.\-]+)(\.\w{2,}))\b/gm}
   };
   var image = {
-    'image': {pattern: /[]/gm, regex: /\[(.*?)\]\!\((.*?)\)/gm}
+    'image-extra': {pattern: /[]/gm, regex: /\[(.*?)\]\!\((.*?)\)/gm},
+    'image-plain': {pattern: /(\!\(|\))/gm, regex: /\!\((.*?)\)/gm}
   };
   var table = {
     'table': {pattern: /\=/gm, regex: /\{\|([\s\S]*?)\|\}/gm}
@@ -230,12 +231,19 @@
   ============================================================*/
   exports.Image = function(doc) {
     for (key in image) {
-      doc = doc.replace(image[key].regex, function(match) {
-        var extra = exports.Prepare(match).split(']!('),
-          alt = extra[0].split('[')[1],
-          url = extra[1].split(')')[0];
-        return '<img class="' + prefix + key + '" src="' + exports.Trim(url) + '" alt="' + exports.Trim(alt) + '">';
-      });
+      if (key == 'image-extra') {
+        doc = doc.replace(image[key].regex, function(match) {
+          var extra = exports.Prepare(match).split(']!('),
+            alt = extra[0].split('[')[1],
+            url = extra[1].split(')')[0];
+          return '<div class="' + prefix + 'image"><img class="' + prefix + key + '" src="' + exports.Trim(url) + '" alt="' + exports.Trim(alt) + '"><div class="' + prefix + 'text">' + exports.Trim(alt) + '</div></div>';
+        });
+      } else {
+        doc = doc.replace(image[key].regex, function(match) {
+          var temp = exports.Prepare(match).replace(image[key].pattern, '');
+          return '<img class="' + prefix + key + '" src="' + exports.Trim(temp) + '">';
+        });
+      }
     }
     return doc;
   };
