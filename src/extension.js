@@ -253,6 +253,7 @@
             tag = (new RegExp(/\={2}/gm)).test(row) ? 'th' : 'td';
           console.log(tag);
           return '<tr class="' + prefix + 'row">' + row.replace(/.+\n/gm, function(col) {
+            console.log(col);
             var temp = col.replace(table[key].pattern, '');
             return '<' + tag + ' class="' + prefix + tag + '">' + exports.Trim(temp) + '</' + tag + '>';
           }) + '</tr>';
@@ -266,7 +267,7 @@
   ===========================Cleaning===========================
   ============================================================*/
   exports.Prepare = function(doc) {
-    return doc.replace(/\<(\/)?span(.*?)\>/gm, '').replace(/\>/gm, '&gt;');
+    return doc.replace(/\<(\/)?span(.*?)\>/gm, '');
   };
   exports.Trim = function(doc) {
     return doc.replace(/(^\s+|\s+$)/gm, '');
