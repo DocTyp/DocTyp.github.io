@@ -281,7 +281,7 @@
     return doc.replace(/(^\s+|\s+$)/gm, '');
   };
   exports.Clean = function(doc) {
-    return doc;//.replace(/(\n|\<br\>){2,}/gm, '<br>');
+    return doc.replace(/\n/gm, '<br>');
   };
   
   /*============================================================
