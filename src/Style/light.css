@@ -198,25 +198,28 @@
 /*============================================================
 =============================Image============================
 ============================================================*/
-.doctyp-image-plain {
-  max-width: 100%;
-  border-radius: 5px;
-}
+.doctyp-image-plain,
 .doctyp-image-extra {
   background-color: rgb(255, 255, 255);
-  max-width: 100%;
+  width: 50%;
   border-radius: 5px;
   -webkit-box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.75);
   box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.75);
 }
 .doctyp-image-extra .doctyp-image {
-  max-width: 100%;
+  width: 100%;
 }
 .doctyp-image-extra .doctyp-text {
   color: rgb(70, 70, 70);
   text-align: center;
   padding: 10px 20px;
+}
+.doctyp-image-grid .doctyp-image-plain,
+.doctyp-image-grid .doctyp-image-extra {
+  width: 45%!important;
+  float: left!important;
+  margin: 2.5%!important;
 }
 
 /*============================================================
@@ -228,13 +231,13 @@
   border: 0;
 }
 .doctyp-th {
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.7);
   color: rgb(70, 70, 70);
   font-weight: bold;
   border: 0;
 }
 .doctyp-td {
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 255, 255, 0.5);
   color: rgb(70, 70, 70);
   border: 0;
   border-top: 1px solid rgb(210, 210, 210);
@@ -243,6 +246,6 @@
   padding: 5px;
 }
 .doctyp-td:hover {
-  background-color: rgba(255, 255, 255, 0.4);
+  background-color: rgba(255, 255, 255, 0.6);
   color: rgb(70, 70, 70);
 }
