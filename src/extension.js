@@ -138,7 +138,6 @@
             credit = extra[0].split(/\[/)[1],
             content = extra[2].split(/([\s\n]{1,})?\]\}/)[0],
             classes = prefix + key;
-            console.log(extra);
           return '<div class="' + classes + '"><span class="' + prefix + 'quote">"' + exports.Trim(content) + '"</span><br><span class="' + prefix + 'credit">' + exports.Trim(credit) + '</span></div>';
         } else {
           var temp = exports.Prepare(match).replace(quote[key].pattern, ''),
