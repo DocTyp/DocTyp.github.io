@@ -72,7 +72,7 @@
     'image': {pattern: /[]/gm, regex: /\!\[(.*?)\]\((.*?)\)/gm}
   };
   var table = {
-    'table': {pattern: /\&gt\;/gm, regex: /\{\|([\s\S]*?)\|\}/gm}
+    'table': {pattern: /\=/gm, regex: /\{\|([\s\S]*?)\|\}/gm}
   };
   
   /*============================================================
@@ -252,7 +252,7 @@
           var tRow = tBody[a];
           console.log(tRow);
           //Check if Title
-          if ((new RegExp(/(\&gt\;){2}/gm)).test(tRow)) {
+          if ((new RegExp(/\={2}/gm)).test(tRow)) {
             return '<tr class="' + prefix + 'trow">' + tRow.replace(/.+\n/gm, function(row) {
               var temp = row.replace(table[key].pattern, '');
               return '<th class="' + prefix + 'theader">' + exports.Trim(temp) + '</th>';
