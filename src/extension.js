@@ -241,7 +241,7 @@
       } else {
         doc = doc.replace(image[key].regex, function(match) {
           var temp = exports.Prepare(match).replace(image[key].pattern, '');
-          return '<img class="' + prefix + key + '" src="' + exports.Trim(temp) + '">';
+          return '<div class="' + prefix + key + '"><img class="' + prefix + 'image" src="' + exports.Trim(temp) + '"></div>';
         });
       }
     }
