@@ -248,9 +248,8 @@
       doc = '<table class="' + prefix + key + '"><tbody>' + doc.replace(table[key].regex, function(match) {
         var extra = exports.Prepare(match).split('{|')[1].split('|}')[0],
           data = extra.split('||');
-        for (var a = 0; a < data.length; a++) {
-          var row = data[a],
-            tag = (new RegExp(/\={2}/gm)).test(row) ? 'th' : 'td';
+        for (row in data) {
+          var tag = (new RegExp(/\={2}/gm)).test(row) ? 'th' : 'td';
           console.log(tag);
           return '<tr class="' + prefix + 'row">' + row.replace(/.+\n/gm, function(col) {
             var temp = col.replace(table[key].pattern, '');
