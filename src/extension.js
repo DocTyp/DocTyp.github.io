@@ -69,7 +69,7 @@
     'email': {pattern: /[]/gm, regex: /\b(([\w\d\.\_\%\+\-]+)\@([\w\d\.\-]+)(\.\w{2,}))\b/gm}
   };
   var image = {
-    'image': {pattern: /[]/gm, regex: /\((.*?)\)\((.*?)\)/gm}
+    'image': {pattern: /[]/gm, regex: /\[(.*?)\]\!\((.*?)\)/gm}
   };
   var table = {
     'table': {pattern: /\=/gm, regex: /\{\|([\s\S]*?)\|\}/gm}
@@ -231,11 +231,10 @@
   exports.Image = function(doc) {
     for (key in image) {
       doc = doc.replace(image[key].regex, function(match) {
-        var extra = exports.Prepare(match).split(')('),
-          alt = exports.Trim(extra[0].split('(')[1]).toLowerCase(),
-          url = exports.Trim(extra[1].split(')')[0]).toLowerCase();
-          console.log([alt, url]);
-        return '<img class="' + prefix + key + '" src="' + url + '" alt="' + alt + '">';
+        var extra = exports.Prepare(match).split(']!('),
+          alt = extra[0].split('[')[1],
+          url = extra[1].split(')')[0];
+        return '<img class="' + prefix + key + '" src="' + exports.Trim(url) + '" alt="' + exports.Trim(alt) + '">';
       });
     }
     return doc;
@@ -268,7 +267,7 @@
   ===========================Cleaning===========================
   ============================================================*/
   exports.Prepare = function(doc) {
-    return doc.replace(/\<(\/)?span(.*?)\>/gm, '');
+    return doc.replace(/\<(\/)?(.*?)\>/gm, '');
   };
   exports.Trim = function(doc) {
     return doc.replace(/(^\s+|\s+$)/gm, '');
