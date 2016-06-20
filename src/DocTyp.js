@@ -54,6 +54,7 @@ var DocTyp = (function(exports) {
     doc = exports.List(doc);
     doc = exports.Link(doc);
     doc = exports.Image(doc);
+    doc = exports.Table(doc);
     doc = exports.Clean(doc);
     //Complete Process
     Complete(element, doc);
@@ -75,6 +76,7 @@ var DocTyp = (function(exports) {
         doc = exports.List(doc);
         doc = exports.Link(doc);
         doc = exports.Image(doc);
+        doc = exports.Table(doc);
         doc = exports.Clean(doc);
         //Complete Process
         Complete(element, doc);
