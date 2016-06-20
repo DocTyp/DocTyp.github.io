@@ -134,9 +134,9 @@
             classes = prefix + key + ' nohighlight language-none';
           return '<code class="' + classes + '">' + exports.Trim(temp) + '</code>';
         } else if (key == 'quote-extra') {
-          var extra = exports.Prepare(match).split(/\]\{\[(\n{1,})?/gm),
+          var extra = exports.Prepare(match).split(/\]\{\[((\s{0,})?\n{1,})?/gm),
             credit = extra[0].split(/\[/gm)[1],
-            content = extra[1].split(/(\n{1,})?\]\}/gm)[0],
+            content = extra[1].split(/(\n{1,}(\s{0,})?)?\]\}/gm)[0],
             classes = prefix + key;
           return '<div class="' + classes + '"><span class="' + prefix + 'quote">"' + exports.Trim(content) + '"</span><br><span class="' + prefix + 'credit">' + exports.Trim(credit) + '</span></div>';
         } else {
@@ -156,9 +156,9 @@
     for (key in code) {
       doc = doc.replace(code[key].regex, function(match) {
         if (key == 'code-extra') {
-          var extra = exports.Prepare(match).split(/\]\{\((\n{1,})?/gm),
+          var extra = exports.Prepare(match).split(/\]\{\(((\s{0,})?\n{1,})?/gm),
             first = extra[0].split(/\[/gm)[1].split(/\|/gm),
-            second = extra[1].split(/(\n{1,})?\)\}/gm)[0],
+            second = extra[1].split(/(\n{1,}(\s{0,})?)?\)\}/gm)[0],
             language = exports.Trim(first[0]).toLowerCase(),
             service = exports.Trim(first[1]).toLowerCase(),
             classes = prefix + key + ' language-' + language + ' sh_' + language + ' prettyprint lang-' + language,
