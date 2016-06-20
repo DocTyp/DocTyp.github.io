@@ -138,7 +138,7 @@
             credit = extra[0].split(/\[/)[1],
             content = extra[1].split(/\]\}/)[0],
             classes = prefix + key;
-            console.log(ectra);
+            console.log(extra);
           return '<div class="' + classes + '"><span class="' + prefix + 'quote">"' + exports.Trim(content) + '"</span><br><span class="' + prefix + 'credit">' + exports.Trim(credit) + '</span></div>';
         } else {
           var temp = exports.Prepare(match).replace(quote[key].pattern, ''),
