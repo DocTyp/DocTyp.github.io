@@ -154,7 +154,7 @@
   list-style-type: lower-alpha;
 }
 .doctyp-checklist .doctyp-checked .doctyp-box {
-  background-color: rgb(102, 179, 255);
+  background-color: rgb(255, 140, 102);
   display: block;
   float: left;
   margin: 5px;
@@ -182,14 +182,14 @@
 .doctyp-url:visited,
 .doctyp-email:link,
 .doctyp-email:visited {
-  color: rgb(255, 140, 102);
+  color: rgb(102, 179, 255);
   text-decoration: none;
 }
 .doctyp-url:hover,
 .doctyp-url:active,
 .doctyp-email:hover,
 .doctyp-email:active {
-  color: rgb(255, 140, 102);
+  color: rgb(102, 179, 255);
   text-decoration: underline;
 }
 
@@ -206,13 +206,13 @@
   border: 0;
 }
 .doctyp-th {
-  background-color: rgba(230, 230, 230, 0.3);
+  background-color: rgba(255, 255, 255, 0.4);
   color: rgb(70, 70, 70);
   font-weight: bold;
   border: 0;
 }
 .doctyp-td {
-  background-color: rgba(230, 230, 230, 0.1);
+  background-color: rgba(255, 255, 255, 0.2);
   color: rgb(70, 70, 70);
   border: 0;
   border-top: 1px solid rgb(210, 210, 210);
@@ -221,6 +221,6 @@
   padding: 5px;
 }
 .doctyp-td:hover {
-  background-color: rgba(230, 230, 230, 0.2);
+  background-color: rgba(255, 255, 255, 0.3);
   color: rgb(70, 70, 70);
 }
