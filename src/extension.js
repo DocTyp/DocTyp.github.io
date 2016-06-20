@@ -246,7 +246,7 @@
         });
       } else {
         doc = doc.replace(image[key].regex, function(match) {
-          var temp = exports.Prepare(match).replace(image[key].pattern, '').replace(/(\n|\<br\>)/gm, '');
+          var temp = match.replace(image[key].pattern, '').replace(/(\n|\<br\>)/gm, '');
           return '<div class="' + prefix + key + '">' + exports.Trim(temp) + '</div>';
         });
       }
