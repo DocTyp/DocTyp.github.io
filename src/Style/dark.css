@@ -211,7 +211,7 @@
   box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.75);
 }
 .doctyp-image-extra .doctyp-image {
-  max-width: 100%;
+  width: 100%;
 }
 .doctyp-image-extra .doctyp-text {
   color: rgb(70, 70, 70);
