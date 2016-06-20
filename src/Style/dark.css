@@ -201,6 +201,7 @@
 .doctyp-image-plain {
   width: 45%;
   float: left;
+  margin: 2.5%;
   -webkit-box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.75);
   box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.75);
@@ -210,6 +211,7 @@
   width: 45%;
   float: left;
   border-radius: 5px;
+  margin: 2.5%;
   -webkit-box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.75);
   box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.75);
