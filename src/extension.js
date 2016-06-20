@@ -88,8 +88,10 @@
     for (key in header) {
       doc = doc.replace(header[key].regex, function(match) {
         var temp = exports.Prepare(match).replace(header[key].pattern, '');
-        if (key == 'header1' || key == 'header2') {
+        if (key == 'header1') {
           return '<span class="' + prefix + key + '">' + exports.Trim(temp) + '</span><hr class="' + prefix + 'rule-header">';
+        } else if (key == 'header2') {
+          return '<span class="' + prefix + key + ' ' + prefix + 'rule-header">' + exports.Trim(temp) + '</span>';
         } else {
           return '<span class="' + prefix + key + '">' + exports.Trim(temp) + '</span>';
         }
