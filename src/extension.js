@@ -250,6 +250,7 @@
           tBody = extra.split('||');
         for (var a = 0; a < tBody.length; a++) {
           var tRow = tBody[a];
+          console.log(tRow);
           //Check if Title
           if ((new RegExp(/(\&gt\;){2}/gm)).test(tRow)) {
             return '<tr class="' + prefix + 'trow">' + tRow.replace(/.+\n/gm, function(row) {
