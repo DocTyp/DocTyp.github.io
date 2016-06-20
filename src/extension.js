@@ -262,7 +262,7 @@
   exports.Table = function(doc) {
     for (key in table) {
       doc = '<table class="' + prefix + key + '"><tbody>' + doc.replace(table[key].regex, function(match) {
-        var extra = match.split(/\{\|/)[1].split(/\|\}/)[0],
+        var extra = exports.Prepare(match).split(/\{\|/)[1].split(/\|\}/)[0],
           rows = extra.split(/\|\|/),
           data = '';
         for (var a = 0; a < rows.length; a++) {
