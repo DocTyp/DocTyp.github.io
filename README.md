@@ -124,7 +124,7 @@ DocTyp.Docify('pre', 'Dark');
 
 
 ## Example
-###### Preformatted Code
+###### HTML
 ```html
 <pre class="doctyp" id="doctyp">
 # Hello World!
@@ -144,9 +144,17 @@ DocTyp.Docify('.doctyp');//, 'Light');
 
 //OR
 
-//document.getElementsByTagName('pre')[0] for selected index
+//document.getElementsByTagName('pre')[0] for selected elements
 var element = document.getElementsByTagName('pre');
 DocTyp.Docify(element, 'Dark');
+```
+
+###### Output
+# Hello World!
+
+```javascript
+var msg = 'Hello World!';
+alert(msg);
 ```
 
 
