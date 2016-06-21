@@ -15,7 +15,8 @@
 ==========================LoadScript==========================
 ============================================================*/
 var LoadScript = (function() {
-  return function(url, async = true) {
+  return function(url, async) {
+    async = (typeof async !== 'undefined') ? async : true;
     var script = document.createElement('script'),
       ref = document.getElementsByTagName('head')[0];
     script.type = 'text/javascript';
@@ -29,6 +30,7 @@ var LoadScript = (function() {
 ============================================================*/
 var LoadStyle = (function() {
   return function(url, async = true) {
+    async = (typeof async !== 'undefined') ? async : true;
     var link = document.createElement('link'),
       ref = document.getElementsByTagName('head')[0];
     link.type = 'text/css';
