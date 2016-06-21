@@ -274,8 +274,8 @@ var Modules = (function(E, S) {
             service = Trim(first[1]).toLowerCase(),
             classes = Glue(' ', S.class + key, 'language-' + language, 'sh_' + language, 'prettyprint', 'lang-' + language),
             dataClasses = language;
-          LoadScript('Syntax/' + service + '/script.js');
-          LoadStyle('Syntax/' + service + '/' + S.theme + '.css');
+          LoadScript('https://doctyp.github.io/src/Syntax/' + service + '/script.js');
+          LoadStyle('https://doctyp.github.io/src/Syntax/' + service + '/' + S.theme + '.css');
           return '<pre class="' + classes + '" data-language="' + dataClasses + '"><code class="' + classes + '" data-language="' + dataClasses + '">' + second + '</code></pre>';
         } else {
           var temp = Prepare(match).replace(S.code[key].remove, ''),
