@@ -54,12 +54,11 @@ LoadScript('https://doctyp.github.io/src/Modules.js', false);
 /*========================================================================================================================
 ==========================================================================================================================
 ========================================================================================================================*/
-window.onload = function() {
-var DocTypBeta = (function(S, M) {
+var DocTypBeta = (function() {
   //DocTyp with arguments
   return function(query, theme) {
     //Check if the Modules exist yet
-    if ((typeof S !== 'undefined') && (typeof M !== 'undefined')) {
+    if ((typeof Settings !== 'undefined') && (typeof Modules !== 'undefined')) {
       //Check if theme was assigned
       if (typeof theme !== 'undefined') {
         //Setting it to lower case
@@ -82,7 +81,8 @@ var DocTypBeta = (function(S, M) {
         //Processing Elements
         M.MultipleQuery(elements);
       }
+    } else {
+      DocTypBeta();
     }
   };
-})(Settings || {}, Modules || {});
-};
+})();
