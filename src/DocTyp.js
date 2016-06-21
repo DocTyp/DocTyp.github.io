@@ -44,7 +44,7 @@ var DocTyp = (function(exports) {
   
   function Single(element) {
     element.onload = function() {
-      //Cater for older browsers
+      //Fetch element text
       var doc = element.innerHTML;
       //Processing
       doc = exports.Header(doc);
@@ -67,21 +67,23 @@ var DocTyp = (function(exports) {
     if (elements.length > 0) {
       for (var a = 0; a < elements.length; a++) {
         var element = elements[a];
-        //Cater for older browsers
-        var doc = element.innerHTML;
-        //Processing
-        doc = exports.Header(doc);
-        doc = exports.Style(doc);
-        doc = exports.Rule(doc);
-        doc = exports.Quote(doc);
-        doc = exports.Code(doc);
-        doc = exports.List(doc);
-        doc = exports.Link(doc);
-        doc = exports.Image(doc);
-        doc = exports.Table(doc);
-        doc = exports.Clean(doc);
-        //Complete Process
-        Complete(element, doc);
+        element.onload = function() {
+          //Fetch element text
+          var doc = element.innerHTML;
+          //Processing
+          doc = exports.Header(doc);
+          doc = exports.Style(doc);
+          doc = exports.Rule(doc);
+          doc = exports.Quote(doc);
+          doc = exports.Code(doc);
+          doc = exports.List(doc);
+          doc = exports.Link(doc);
+          doc = exports.Image(doc);
+          doc = exports.Table(doc);
+          doc = exports.Clean(doc);
+          //Complete Process
+          Complete(element, doc);
+        };
       }
     } else {
       throw('The element is not defined or is not a DOM element.');
