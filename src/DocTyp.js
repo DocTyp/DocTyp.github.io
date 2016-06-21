@@ -54,7 +54,7 @@ LoadScript('https://doctyp.github.io/src/Modules.js');
 /*========================================================================================================================
 ==========================================================================================================================
 ========================================================================================================================*/
-var DocTypBeta = (function() {
+var DocTyp = (function() {
   //DocTyp with arguments
   return function(query, theme) {
     //Check if the Modules exist yet
@@ -84,7 +84,7 @@ var DocTypBeta = (function() {
         M.MultipleQuery(elements);
       }
     } else {
-      DocTypBeta(query, theme);
+      DocTyp(query, theme);
     }
   };
 })();
