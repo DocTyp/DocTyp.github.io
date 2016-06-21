@@ -354,7 +354,7 @@ var Modules = (function(E, S) {
   };
   E.Table = function(doc) {
     for (key in S.table) {
-      doc = '<table class="' + S.prefix + key + '"><tbody>' + doc.replace(S.table[key].regex, function(match) {
+      doc = '<table class="' + S.class + key + '"><tbody>' + doc.replace(S.table[key].regex, function(match) {
         var extra = Prepare(match).split(/\{\|/)[1].split(/\|\}/)[0],
           rows = extra.split(/\|{2}/),
           data = '';
