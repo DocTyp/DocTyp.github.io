@@ -1,9 +1,9 @@
-var Settings = (function(DT) {
-  DT.Valid = function() {
+var Settings = (function(E) {
+  E.SettingsTest = function() {
     return true;
   };
-  DT.header = {
+  E.header = {
     'header4': {remove: /[]/gm, regex: /[]/gm}
   };
-  return DT;
+  return E;
 })(DocTypBeta || {});
