@@ -1,6 +1,9 @@
-(function(DT) {
-  exports.Escape = function(doc) {
+var Modules = (function(DT) {
+  DT.Valid = function() {
+    return true;
+  };
+  DT.Escape = function(doc) {
     return doc;
   };
-  return exports;
+  return DT;
 })(DocTypBeta || {});
