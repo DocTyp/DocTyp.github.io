@@ -1,9 +1,6 @@
-var Modules = (function(E) {
-  E.ModulesTest = function() {
-    return true;
-  };
-  E.Escape = function(doc) {
+var Modules = (function(exports) {
+  exports.Escape = function(doc) {
     return doc;
   };
-  return E;
-})(DocTypBeta || {});
+  return exports;
+})({});
