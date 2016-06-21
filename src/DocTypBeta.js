@@ -59,6 +59,8 @@ var DocTypBeta = (function() {
   return function(query, theme) {
     //Check if the Modules exist yet
     if ((typeof Settings !== 'undefined') && (typeof Modules !== 'undefined')) {
+      var S = Settings,
+        M = Modules;
       //Check if theme was assigned
       if (typeof theme !== 'undefined') {
         //Setting it to lower case
@@ -82,7 +84,7 @@ var DocTypBeta = (function() {
         M.MultipleQuery(elements);
       }
     } else {
-      DocTypBeta();
+      DocTypBeta(query, theme);
     }
   };
 })();
