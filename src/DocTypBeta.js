@@ -49,8 +49,8 @@ var LoadStyle = (function() {
     ref.appendChild(link);
   };
 })();
-LoadScript('https://doctyp.github.io/src/Settings.js', false);
-LoadScript('https://doctyp.github.io/src/Modules.js', false);
+LoadScript('https://doctyp.github.io/src/Settings.js');
+LoadScript('https://doctyp.github.io/src/Modules.js');
 /*========================================================================================================================
 ==========================================================================================================================
 ========================================================================================================================*/
