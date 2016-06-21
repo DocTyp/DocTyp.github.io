@@ -170,13 +170,13 @@ alert(msg);
 ```javascript
 //External Syntax Highlighting will be adjusted to the selected DocTyp Theme
 //You can specify Tag-, Class- or ID Name
-DocTyp.Docify('.doctyp');//, 'Light');
+DocTyp('.doctyp');//, 'Light');
 
 //OR
 
 //document.getElementsByTagName('pre')[0] for selected elements
 var element = document.getElementsByTagName('pre');
-DocTyp.Docify(element, 'Dark');
+DocTyp(element, 'Dark');
 ```
 
 ###### Output
