@@ -35,6 +35,8 @@ See Examples: [DocTyp](https://doctyp.github.io)
 - `query`: You could specify the element by its Tag Name, Class, ID or by fetching it with JavaScript.
 - `theme`: The theme is optional, Dark, Light or leave it blank for a custom theme.
 
+*[Custom Styling Template](https://raw.githubusercontent.com/DocTyp/DocTyp.github.io/master/src/Style/Template.css)*
+
 *If you don't want it in the body tag, you'll have to call `DocTyp('pre', 'Dark');` in an onload event or when the `document` is ready.*
 
 
