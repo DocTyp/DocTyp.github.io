@@ -29,7 +29,7 @@ var LoadScript = (function() {
 ==========================LoadStyle===========================
 ============================================================*/
 var LoadStyle = (function() {
-  return function(url, async = true) {
+  return function(url, async) {
     async = (typeof async !== 'undefined') ? async : true;
     var link = document.createElement('link'),
       ref = document.getElementsByTagName('head')[0];
