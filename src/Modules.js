@@ -1,9 +1,9 @@
-var Modules = (function(DT) {
-  DT.Valid = function() {
+var Modules = (function(E) {
+  E.ModulesTest = function() {
     return true;
   };
-  DT.Escape = function(doc) {
+  E.Escape = function(doc) {
     return doc;
   };
-  return DT;
+  return E;
 })(DocTypBeta || {});
