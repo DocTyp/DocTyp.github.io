@@ -6,7 +6,7 @@ See Examples: [DocTyp](https://doctyp.github.io)
 
 
 ## Usage
-###### HTML
+
 URL: `https://doctyp.github.io/src/DocTyp.js` **OR** `https://doctyp.github.io/src/DocTyp.min.js`
 
 ```html
@@ -15,7 +15,7 @@ URL: `https://doctyp.github.io/src/DocTyp.js` **OR** `https://doctyp.github.io/s
   <script type="text/javascript" src="https://doctyp.github.io/src/DocTyp.min.js"></script>
   ...
 </head>
-<body>
+<body onload="DocTyp.Docify('pre', 'Dark');">
   ...
   <pre>
     # Hello World!
@@ -24,18 +24,11 @@ URL: `https://doctyp.github.io/src/DocTyp.js` **OR** `https://doctyp.github.io/s
 </body>
 ```
 
-###### JavaScript
 **Parameters**
 - `element`: You could specify the element by its Tag Name, Class, ID or by fetching it with JavaScript.
 - `theme`: The theme is optional, Dark, Light or leave it blank for a custom theme.
-```javascript
-//This must be in an onload attribute
-DocTyp.Docify('pre', 'Dark');
-```
 
-*Place it in an `onload` attribute on the `body` tag.*
-
-*e.g. `<body onload="DocTyp.Docify('pre', 'Dark');"> ... </body>`*
+*If you don't want it in the body tag, you'll have to call `DocTyp.Docify('pre', 'Dark');` in an onload event or when the `document` is ready.*
 
 
 ## Syntax
