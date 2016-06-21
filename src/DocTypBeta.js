@@ -15,11 +15,11 @@
 ==========================LoadScript==========================
 ============================================================*/
 var LoadScript = (function() {
-  return function(url) {
+  return function(url, async = true) {
     var script = document.createElement('script'),
       ref = document.getElementsByTagName('head')[0];
     script.type = 'text/javascript';
-    script.async = true;
+    script.async = async;
     script.src = url;
     ref.appendChild(script);
   };
@@ -28,23 +28,27 @@ var LoadScript = (function() {
 ==========================LoadStyle===========================
 ============================================================*/
 var LoadStyle = (function() {
-  return function(url) {
+  return function(url, async = true) {
     var link = document.createElement('link'),
       ref = document.getElementsByTagName('head')[0];
     link.type = 'text/css';
     link.rel = 'stylesheet';
     link.href = url;
-    link.media = 'none';
-    link.onload = function() {
-      if (link.media != 'all') {
-        link.media = 'all';
-      }
-    };
+    if (async) {
+      link.media = 'none';
+      link.onload = function() {
+        if (link.media != 'all') {
+          link.media = 'all';
+        }
+      };
+    } else {
+      link.media = 'all';
+    }
     ref.appendChild(link);
   };
 })();
-LoadScript('https://doctyp.github.io/src/Settings.js');
-LoadScript('https://doctyp.github.io/src/Modules.js');
+LoadScript('https://doctyp.github.io/src/Settings.js', false);
+LoadScript('https://doctyp.github.io/src/Modules.js', false);
 /*========================================================================================================================
 ==========================================================================================================================
 ========================================================================================================================*/
