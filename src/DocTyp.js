@@ -43,21 +43,23 @@ var DocTyp = (function(exports) {
   }
   
   function Single(element) {
-    //Cater for older browsers
-    var doc = element.innerHTML;
-    //Processing
-    doc = exports.Header(doc);
-    doc = exports.Style(doc);
-    doc = exports.Rule(doc);
-    doc = exports.Quote(doc);
-    doc = exports.Code(doc);
-    doc = exports.List(doc);
-    doc = exports.Link(doc);
-    doc = exports.Image(doc);
-    doc = exports.Table(doc);
-    doc = exports.Clean(doc);
-    //Complete Process
-    Complete(element, doc);
+    element.onload = function() {
+      //Cater for older browsers
+      var doc = element.innerHTML;
+      //Processing
+      doc = exports.Header(doc);
+      doc = exports.Style(doc);
+      doc = exports.Rule(doc);
+      doc = exports.Quote(doc);
+      doc = exports.Code(doc);
+      doc = exports.List(doc);
+      doc = exports.Link(doc);
+      doc = exports.Image(doc);
+      doc = exports.Table(doc);
+      doc = exports.Clean(doc);
+      //Complete Process
+      Complete(element, doc);
+    };
   }
   
   function Multiple(elements) {
