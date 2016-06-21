@@ -7,7 +7,11 @@ See Examples: [DocTyp](https://doctyp.github.io)
 
 ## Usage
 
-URL: `https://doctyp.github.io/src/DocTyp.js` **OR** `https://doctyp.github.io/src/DocTyp.min.js`
+###### URL
+`https://doctyp.github.io/src/DocTyp.js`
+**OR**
+`https://doctyp.github.io/src/DocTyp.min.js`
+*If you use the minified version it will load all the needed files in a minified verion.*
 
 ```html
 <head>
