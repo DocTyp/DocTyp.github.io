@@ -19,6 +19,9 @@ var Modules = (function(E, S) {
       return '';
     }
   }
+  function Character(doc) {
+    return doc.replace(/\</gm, '&lt;').replace(/\>/gm, '&gt;');
+  }
   function Prepare(doc) {
     return doc.replace(/\<(\/)?(.*?)\>/gm, '');
   }
@@ -59,6 +62,7 @@ var Modules = (function(E, S) {
     //Fetch element text
     var doc = element.innerHTML;
     //Processing
+    doc = Character(doc);
     doc = E.Header(doc);
     doc = E.Text(doc);
     doc = E.Rule(doc);
@@ -80,6 +84,7 @@ var Modules = (function(E, S) {
         //Fetch element text
         var doc = element.innerHTML;
         //Processing
+        doc = Character(doc);
         doc = E.Header(doc);
         doc = E.Text(doc);
         doc = E.Rule(doc);
@@ -118,7 +123,7 @@ var Modules = (function(E, S) {
   E.Text = function(doc) {
     for (key in S.text) {
       doc = doc.replace(S.text[key].regex, function(match) {
-        var temp = Prepare(match).replace(S.text[key].remove, '');
+        var temp = match.replace(S.text[key].remove, '');
         return '<span class="' + S.class + key + '">' + Trim(temp) + '</span>';
       });
     }
@@ -140,13 +145,13 @@ var Modules = (function(E, S) {
             classes = Glue(' ', S.class + key, 'nohighlight', 'language-none');
           return '<code class="' + classes + '">' + Trim(temp) + '</code>';
         } else if (key == 'quote-extra') {
-          var extra = Prepare(match).split(/\]\{\[([\s\n]{1,})?/),
+          var extra = match.split(/\]\{\[([\s\n]{1,})?/),
             credit = extra[0].split(/\[/)[1],
             content = extra[2].split(/([\s\n]{1,})?\]\}/)[0],
             classes = Glue(' ', S.class + key);
           return '<div class="' + classes + '"><span class="' + S.class + 'quote">"' + Trim(content) + '"</span><br><span class="' + S.class + 'credit">' + Trim(credit) + '</span></div>';
         } else {
-          var temp = Prepare(match).replace(S.quote[key].remove, ''),
+          var temp = match.replace(S.quote[key].remove, ''),
             classes = Glue(' ', S.class + key);
           return '<div class="' + classes + '">"' + Trim(temp) + '"</div>';
         }
@@ -182,17 +187,17 @@ var Modules = (function(E, S) {
       doc = doc.replace(S.list[key].regex, function(match) {
         if (key == 'list-disc' || key == 'list-circle' || key == 'list-square') {
           return '<ul class="' + S.class + key + '">' + match.replace(/.+\n/gm, function(line) {
-            var temp = Prepare(line).replace(S.list[key].remove, '');
+            var temp = line.replace(S.list[key].remove, '');
             return '<li>' + Trim(temp) + '</li>';
           }) + '</ul>';
         } else if (key == 'list-decimal' || key == 'list-roman' || key == 'list-alpha') {
           return '<ol class="' + S.class + key + '">' + match.replace(/.+\n/gm, function(line) {
-            var temp = Prepare(line).replace(S.list[key].remove, '');
+            var temp = line.replace(S.list[key].remove, '');
             return '<li>' + Trim(temp) + '</li>';
           }) + '</ol>';
         } else {
           return '<div class="' + S.class + key + '">' + match.replace(/.+\n/gm, function(line) {
-            var temp = Prepare(line).replace(/\[[Xx\s]?\]/gm, ''),
+            var temp = line.replace(/\[[Xx\s]?\]/gm, ''),
               tag = (new RegExp(/\[\s?\]/gm)).test(line) ? 'unchecked' : 'checked';
             return '<span class="' + S.class + tag + '"><span class="' + S.class + 'box"></span><span class="' + S.class + 'item">' + Trim(temp) + '</span></span><br>';
           }) + '</div>';
@@ -246,7 +251,7 @@ var Modules = (function(E, S) {
   E.Table = function(doc) {
     for (key in S.table) {
       doc = '<table class="' + S.class + key + '"><tbody>' + doc.replace(S.table[key].regex, function(match) {
-        var extra = Prepare(match).split(/\{\|/)[1].split(/\|\}/)[0],
+        var extra = match.split(/\{\|/)[1].split(/\|\}/)[0],
           rows = extra.split(/\|{2}/),
           data = '';
         for (var a = 0; a < rows.length; a++) {
