@@ -1,23 +1,31 @@
 [comment]: # (Escape Characters)
-`<`: `&lt;`
-`&`: `&amp;`
+```
+<: &lt;
+&: &amp;
+```
 
 [comment]: # (Blank Lines)
-``
-`\s`
-`\t`
-`\s\t`
+```
+: Empty
+ : Space
+  : Tab
+   : Tabs and Spaces
+```
 
 [comment]: # (Headers)
-`# H1`
-`## H2`
-`### H3`
-`#### H4`
-`##### H5`
-`###### H6`
+```
+#: H1
+##: H2
+###: H3
+####: H4
+#####: H5
+######: H6
+```
 
 [comment]: # (Blockquotes)
->
+```
+> 
+```
 
 [comment]: # (Blank Lines)
 
