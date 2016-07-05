@@ -1,30 +1,17 @@
 # Comment
 ```
-[comment]: # (This is a comment)
-```
-
-# Escape Characters
-```
-<: &lt;
-&: &amp;
-```
-
-# Blank Lines
-```
-: Empty
- : Space
-  : Tab
-   : Tabs and Spaces
+<!--
+-->
 ```
 
 # Headers
 ```
-#: H1
-##: H2
-###: H3
-####: H4
-#####: H5
-######: H6
+# H1
+## H2
+### H3
+#### H4
+##### H5
+###### H6
 ```
 
 # Blockquotes
@@ -81,11 +68,6 @@ ____: Solid
 [Label](https://doctyp.github.io)
 [Label](https://doctyp.github.io "Title")
 [Label](https://doctyp.github.io 'Title')
-
-Choose [Label][ID] OR [ID]
-[ID]: https://doctyp.github.io
-[ID]: https://doctyp.github.io "Title"
-[ID]: https://doctyp.github.io 'Title'
 ```
 
 # Styling Text
@@ -122,13 +104,4 @@ alert(msg);
 ![Alt Text](https://doctyp.github.io/Images/Logo.png)
 ![Alt Text](https://doctyp.github.io/Images/Logo.png "Title")
 ![Alt Text](https://doctyp.github.io/Images/Logo.png 'Title')
-
-Choose ![Label][ID] OR ![ID]
-[ID]: https://doctyp.github.io/Images/Logo.png
-[ID]: https://doctyp.github.io/Images/Logo.png "Title"
-[ID]: https://doctyp.github.io/Images/Logo.png 'Title'
-```
-
-# Table
-```
 ```
